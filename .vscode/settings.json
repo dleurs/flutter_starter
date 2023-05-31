@@ -1,0 +1,54 @@
+{
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    // Remove .fvm files from search
+    "search.exclude": {
+        ".fvm/**": true
+    },
+    // Remove from file watching
+    "files.watcherExclude": {
+        ".fvm/**": true
+    },
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false,
+        "editor.lineHeight": 1.5,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": true
+        },
+        "editor.bracketPairColorization.enabled": true
+    },
+    "dart.openDevTools": "flutter",
+    "workbench.editorAssociations": {
+        "*.otf": "default"
+    },
+    "dart.flutterHotReloadOnSave": "all",
+    "explorer.experimental.fileNesting.enabled": true,
+    "explorer.experimental.fileNesting.expand": false,
+    "explorer.experimental.fileNesting.patterns": {
+        "pubspec.yaml": ".flutter-plugins, .packages, .dart_tool, .flutter-plugins-dependencies, .metadata, .packages, pubspec.lock, build.yaml, analysis_options.yaml, all_lint_rules.yaml",
+        ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+        "readme.*": "authors, backers.md, changelog*, citation*, code_of_conduct.md, codeowners, contributing.md, contributors, copying, credits, governance.md, history.md, license*, maintainers, readme*, security.md, sponsors.md",
+        "*.dart": "$(capture).g.dart, $(capture).freezed.dart",
+    },
+    "dart.showInspectorNotificationsForWidgetErrors": false,
+    "editor.fontSize": 14,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "editor.inlineSuggest.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "explorer.confirmDelete": false,
+    "dart.lineLength": 120,
+    "dart.debugExternalPackageLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "git.mergeEditor": true,
+    "redhat.telemetry.enabled": true,
+}
