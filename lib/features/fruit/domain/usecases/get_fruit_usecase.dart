@@ -5,8 +5,7 @@ import 'package:flutter_starter/features/fruit/domain/repository/fruit_repositor
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetFruitUseCase
-    extends BaseFutureWithEmptyParamsUseCase<Exception, List<Fruit>> {
+class GetFruitUseCase extends BaseFutureWithEmptyParamsUseCase<Exception, List<Fruit>> {
   final FruitRepository _fruitRepository;
   GetFruitUseCase(this._fruitRepository);
 

@@ -43,30 +43,24 @@ class FruitState {
           (x) => Fruit.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      errorMessage:
-          map['errorMessage'] != null ? map['errorMessage'] as String : null,
+      errorMessage: map['errorMessage'] != null ? map['errorMessage'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory FruitState.fromJson(String source) =>
-      FruitState.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FruitState.fromJson(String source) => FruitState.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'FruitState(isLoading: $isLoading, fruits: $fruits, errorMessage: $errorMessage)';
+  String toString() => 'FruitState(isLoading: $isLoading, fruits: $fruits, errorMessage: $errorMessage)';
 
   @override
   bool operator ==(covariant FruitState other) {
     if (identical(this, other)) return true;
 
-    return other.isLoading == isLoading &&
-        listEquals(other.fruits, fruits) &&
-        other.errorMessage == errorMessage;
+    return other.isLoading == isLoading && listEquals(other.fruits, fruits) && other.errorMessage == errorMessage;
   }
 
   @override
-  int get hashCode =>
-      isLoading.hashCode ^ fruits.hashCode ^ errorMessage.hashCode;
+  int get hashCode => isLoading.hashCode ^ fruits.hashCode ^ errorMessage.hashCode;
 }

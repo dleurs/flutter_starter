@@ -45,8 +45,7 @@ class Fruit {
 
   String toJson() => json.encode(toMap());
 
-  factory Fruit.fromJson(String source) =>
-      Fruit.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Fruit.fromJson(String source) => Fruit.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Fruit(name: $name, family: $family, genus: $genus)';
@@ -75,6 +74,5 @@ enum FruitGenus {
   String toString() => "FruitGenus($name)";
 
   static getFruitGenus(String? name) =>
-      FruitGenus.values.firstOrNullWhere((element) => element.name == name) ??
-      FruitGenus.unknown;
+      FruitGenus.values.firstOrNullWhere((element) => element.name == name) ?? FruitGenus.unknown;
 }

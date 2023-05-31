@@ -42,12 +42,10 @@ class FruitModel {
 
   String toJson() => json.encode(toMap());
 
-  factory FruitModel.fromJson(String source) =>
-      FruitModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory FruitModel.fromJson(String source) => FruitModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'FruitModel(name: $name, family: $family, genus: $genus)';
+  String toString() => 'FruitModel(name: $name, family: $family, genus: $genus)';
 
   @override
   bool operator ==(covariant FruitModel other) {

@@ -10,6 +10,5 @@ extension FruitMapper on FruitModel {
 }
 
 extension FruitListMapper on List<FruitModel>? {
-  List<Fruit> toEntity() =>
-      this?.map((model) => model.toEntity()).toList() ?? List.empty();
+  List<Fruit> toEntity() => this?.map((model) => model.toEntity()).toList() ?? List.empty();
 }

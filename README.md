@@ -29,7 +29,13 @@ Bonuses :
 - [Coming soon] Splash screen to initialize the app
 
 
+### VSCode config
 
+Check VSCode config ```.vscode/settings.json```
+
+```
+"dart.lineLength": 120,
+```
 ### Flutter version management 
 
 https://fvm.app/docs/getting_started/installation
@@ -109,6 +115,15 @@ With VSCode extension ```Dart Data Class Generator```, generate data class.
 ![auto-create-data-class](readme_images/auto-create-data-class.png)
 
 You can also used @freezed and generated code, but with bug apps it can take up to 5/10 minutes to build everything so I prefer having generated code only if necessary (I am not 100% sure about this, maybe just use generated code without gitignoring it)
+
+Here some tests : 
+
+![fruit-test-1](readme_images/fruit-test-1.png)
+
+![fruit-test-2](readme_images/fruit-test-2.png)
+
+![fruit-test-3](readme_images/fruit-test-3.png)
+
 
 ### I.2 Repository
 

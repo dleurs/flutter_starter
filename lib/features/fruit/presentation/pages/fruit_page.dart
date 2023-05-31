@@ -22,6 +22,7 @@ class FruitPage extends StatelessWidget {
               } else if (state.errorMessage.isEmptyOrNull == false) {
                 return Text("Un error occured : ${state.errorMessage}");
               }
+
               return ListView.builder(
                   itemCount: state.fruits.length,
                   itemBuilder: (context, index) {
@@ -29,9 +30,7 @@ class FruitPage extends StatelessWidget {
                     return ListTile(
                       title: Text(fruit.name),
                       subtitle: Text(fruit.family),
-                      trailing: fruit.genus == FruitGenus.citrus
-                          ? const Icon(Icons.restaurant_menu)
-                          : null,
+                      trailing: fruit.genus == FruitGenus.citrus ? const Icon(Icons.restaurant_menu) : null,
                     );
                   });
             },
