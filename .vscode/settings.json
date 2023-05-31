@@ -46,7 +46,7 @@
     "explorer.confirmDragAndDrop": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "explorer.confirmDelete": false,
-    "dart.lineLength": 150,
+    "dart.lineLength": 80,
     "dart.debugExternalPackageLibraries": false,
     "dart.debugSdkLibraries": false,
     "git.mergeEditor": true,
