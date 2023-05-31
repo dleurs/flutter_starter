@@ -10,7 +10,7 @@ part of 'fruit_api.dart';
 
 class _FruitApi implements FruitApi {
   _FruitApi(this._dio) {
-    baseUrl ??= 'https://fruityvice.com/';
+    baseUrl ??= 'https://fruityvice.com';
   }
 
   final Dio _dio;
@@ -31,7 +31,7 @@ class _FruitApi implements FruitApi {
     )
             .compose(
               _dio.options,
-              'api/fruit/all',
+              '/api/fruit/all',
               queryParameters: queryParameters,
               data: _data,
             )

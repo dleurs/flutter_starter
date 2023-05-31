@@ -7,12 +7,15 @@ import 'package:retrofit/retrofit.dart';
 part 'fruit_api.g.dart';
 
 @lazySingleton
-@RestApi(baseUrl: ApiConstants.fruitsClient)
+@RestApi(
+  baseUrl: ApiConstants.fruitsClient,
+  parser: Parser.MapSerializable,
+)
 abstract class FruitApi {
-  factory FruitApi(Dio dio) = _FruitApi;
+  factory FruitApi(@Named(ApiConstants.publicHttpClient) Dio dio) = _FruitApi;
 
   @factoryMethod
-  static FruitApi create(Dio dio) {
+  static FruitApi create(@Named(ApiConstants.publicHttpClient) Dio dio) {
     return FruitApi(dio);
   }
 

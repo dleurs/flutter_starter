@@ -15,7 +15,6 @@ class FruitRepositoryImpl implements FruitRepository {
     try {
       final fruitsModel = await _fruitApi.getFruits();
       final fruits = fruitsModel.toEntity();
-
       return Right(fruits);
     } on Exception catch (ex) {
       return Left(ex);
