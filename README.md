@@ -102,11 +102,11 @@ class Fruit {
 
 Generate constructor with VSCode : 
 
-![Create-constructor](readme_images/Capture d’écran 2023-05-31 à 15.09.26.png)
+![create-constructor](readme_images/create-constructor.png)
 
 With VSCode extension ```Dart Data Class Generator```, generate data class.
 
-![Auto-create-data-class](readme_images/Capture d’écran 2023-05-31 à 10.52.51.png)
+![auto-create-data-class](readme_images/auto-create-data-class.png)
 
 You can also used @freezed and generated code, but with bug apps it can take up to 5/10 minutes to build everything so I prefer having generated code only if necessary (I am not 100% sure about this, maybe just use generated code without gitignoring it)
 
@@ -158,7 +158,7 @@ Most of the times, usecases will just call a repository, but sometimes it can co
 
 First, check the data source on a browser ```https://fruityvice.com/api/fruit/all```
 
-![browser-json](readme_images/Capture d’écran 2023-05-31 à 15.20.18.png)
+![browser-json](readme_images/browser-json.png)
 
 Then, inside ```lib/features/fruit/data/models/fruit_model.dart```
 
@@ -379,5 +379,5 @@ class FruitPage extends StatelessWidget {
 }
 ```
 
-![list-fruits-displayed](readme_images/242273992-cec382ac-e676-4e35-aac7-fd9a0e95c869.png)
+![list-fruits-displayed](readme_images/list-fruits-displayed.png)
 
