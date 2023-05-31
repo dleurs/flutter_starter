@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/features/fruit/domain/usecase/get_fruit_usecase.dart';
+import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart';
 import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_state.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:developer' as developer;

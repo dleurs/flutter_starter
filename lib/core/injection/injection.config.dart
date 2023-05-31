@@ -18,7 +18,7 @@ import 'package:flutter_starter/features/fruit/data/repository/fruit_repository_
     as _i6;
 import 'package:flutter_starter/features/fruit/domain/repository/fruit_repository.dart'
     as _i5;
-import 'package:flutter_starter/features/fruit/domain/usecase/get_fruit_usecase.dart'
+import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart'
     as _i7;
 import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_cubit.dart'
     as _i8;
