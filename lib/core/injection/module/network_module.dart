@@ -8,31 +8,14 @@ abstract class NetWorkModule {
   @Named(ApiConstants.privateHttpClient)
   Dio getPrivateHttpClient() {
     return Dio();
-    /* ..options.followRedirects = false
-      ..options.baseUrl = config.apiConfig.apiUrl
-      ..options.connectTimeout = AppConstants.connectTimeout.inMilliseconds
-      ..options.receiveTimeout = AppConstants.receiveTimeout.inMilliseconds
-      ..options.sendTimeout = AppConstants.sendTimeout.inMilliseconds
-      ..interceptors.add(HeaderInterceptor())
-      ..interceptors.add(LoggingInterceptor())
-      ..addAliceInterceptor(config.flavor, alice)
-      ..addCharlesProxyCertificate(flavor: config.flavor)
-      ..addOauthBearerInterceptor()
-      ..addErrorInterceptor(); */
+    /* 
+    ..interceptors.add(HeaderInterceptor())
+    */
   }
 
   @lazySingleton
   @Named(ApiConstants.publicHttpClient)
   Dio getPublicHttpClient() {
     return Dio();
-    /* ..options.followRedirects = false
-      ..options.baseUrl = config.apiConfig.apiUrl
-      ..options.connectTimeout = AppConstants.connectTimeout.inMilliseconds
-      ..options.receiveTimeout = AppConstants.receiveTimeout.inMilliseconds
-      ..options.sendTimeout = AppConstants.sendTimeout.inMilliseconds
-      ..interceptors.add(LoggingInterceptor())
-      ..addAliceInterceptor(config.flavor, alice)
-      ..addCharlesProxyCertificate(flavor: config.flavor)
-      ..addErrorInterceptor(); */
   }
 }
