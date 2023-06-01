@@ -5,9 +5,6 @@ class ApiConstants {
   static const String publicHttpClient = 'public-http-client';
   static const String privateHttpClient = 'private-http-client';
 
-  static const String authorization = 'Authorization';
-  static const String bearer = 'Bearer';
-
   static const connectTimeout = Duration(seconds: 10);
   static const receiveTimeout = Duration(seconds: 10);
   static const sendTimeout = Duration(seconds: 20);

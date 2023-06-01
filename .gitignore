@@ -1,6 +1,9 @@
 # fvm
 .fvm/flutter_sdk
 
+#flask .venv
+flask-local-auth-framework/.venv
+
 
 
 # Miscellaneous
