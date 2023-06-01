@@ -348,6 +348,10 @@ Then clic ```Generate data class```
 
 Inside ```lib/features/fruit/presentation/pages/fruit_page.dart```
 
+UI should be very stupid, there is no intelligence inside it, just if (that state) then show this widget.
+
+If you should add a little more intelligence, like modify a date presentation from "2023-06-01" to "Jeudi 1 juin 2023", then you should create a static function inside ```lib/features/fruit/presentation/utils/fruit_utils.dart```
+
 ```
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
