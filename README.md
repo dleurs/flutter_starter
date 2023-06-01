@@ -80,11 +80,11 @@ mkdir data;
 cd data;
 mkdir data_sources;
 mkdir models;
-mkdir repoditory;
+mkdir repository;
 mkdir mapper;
 cd ..;
 
-mkdir cd presentation;
+mkdir presentation;
 cd presentation;
 mkdir cubit;
 mkdir pages;
