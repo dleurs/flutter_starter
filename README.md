@@ -72,6 +72,7 @@ cd domain;
 mkdir entities;
 mkdir repository;
 mkdir usecases;
+mkdir utils;
 cd ..;
 
 mkdir data;
@@ -348,6 +349,10 @@ Then clic ```Generate data class```
 
 Inside ```lib/features/fruit/presentation/pages/fruit_page.dart```
 
+UI should be very stupid, there is no intelligence inside it, just if (that state) then show this widget.
+
+If you should add a little more intelligence, like modify a date presentation from "2023-06-01" to "Jeudi 1 juin 2023", then you should create a static function inside ```lib/features/fruit/domain/utils/fruit_utils.dart``` (Maybe inside presentation folder ?)
+
 ```
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
@@ -395,4 +400,14 @@ class FruitPage extends StatelessWidget {
 ```
 
 ![list-fruits-displayed](readme_images/list-fruits-displayed.png)
+
+
+### IV. Tests
+
+### IV.1. Unit tests
+### IV.2. Code coverage
+
+### IV.3. Golden tests
+
+### IV.4. Integration tests
 
