@@ -327,6 +327,14 @@ class FruitCubit extends Cubit<FruitState> {
 }
 ```
 
+It is not clean to access state with ```GetIt.instance.get<FruitCubit>().state```. Indeed, in some cases like adding authentication token inside http interceptor, you have to get the info without context. You should then create a Stream / StreamSubcription, and consider HydratedCubit for offline support.
+
+- https://stackoverflow.com/questions/73707762/flutter-access-bloc-without-context
+- https://codeclusive.io/blog/flutter-authorization-with-bloc/
+
+
+https://stackoverflow.com/questions/73707762/flutter-access-bloc-without-context
+
 Inside ```lib/features/fruit/presentation/cubit/fruit_state.dart```
 
 ```
