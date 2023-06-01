@@ -7,17 +7,18 @@ What is inside this project ?
 1. State management using Cubit
 2. Clean archi : Presentation / Domain / Data : 
 - UI <-- BlocBuilder --> Cubit <-- function/state --> UseCase <-- Entity --> Repository <-- Model --> API
-5. [Coming soon] Theming, Design Pattern, black/white theme
-6. [Coming soon] Navigation for mobile and web with Beamer
-7. [Coming soon] Unit tests with code coverage, golden test ans integration test
-8. [Coming soon] Internalisation with Firebase, dealing with online and offline
-9. [Coming soon] Dev / Staging / Prod versions
-10. [Coming soon] CICD fastlane locally and with Github Actions, upload to Google Play / Apple Store
+3. [Coming soon] Authentication token access/refresh token in HTTP Rest
+4. [Coming soon] Theming, Design Pattern, black/white theme
+5. [Coming soon] Navigation for mobile and web with Beamer
+6. [Coming soon] Unit tests with code coverage, golden test ans integration test
+7. [Coming soon] Internalisation with Firebase, dealing with online and offline
+8. [Coming soon] CICD fastlane locally and with Github Actions, upload to Google Play / Apple Store
 
 
 
 Bonuses : 
 - HTTP Rest request with Retrofit & Dio
+- [Coming soon] Dev / Staging / Prod versions
 - [Coming soon] Stream handling / Firebase Firestore Database
 - [Coming soon] Retriving/upload media with Firebase Storage
 - [Coming soon] Hosting flutter web with
