@@ -420,30 +420,167 @@ class FruitPage extends StatelessWidget {
 
 ### IV.4. Integration tests
 
-# Authentication with Flask
+# Authentication Loopback server
 
-https://blog.ashutoshkrris.in/how-to-set-up-basic-user-authentication-in-a-flask-app
-
-```
-cd flask_user_authentication
-python3 -m venv env
-. env/bin/activate
-pip install -r requirements.txt
-source .env
-```
-```
-flask db init
-flask db migrate
-flask db upgrade
-```
-
-if error ```ImportError: cannot import name 'config' from 'decouple'```
-```
-pip uninstall decouple
-pip install python-decouple
-```
+https://loopback.io/pages/en/lb4/readmes/loopback-next/examples/todo-jwt/
 
 ```
-python manage.py run
+npm i -g @loopback/cli
 ```
+```
+lb4 example todo-jwt
+```
+```
+cd loopback4-example-todo-jwt
+```
+```
+npm start
+```
+
+http://localhost:3000/explorer
+
+```
+curl --request POST \
+  --url http://localhost:3000/signup \
+  --header 'Content-Type: application/json' \
+  --data '{
+	 "email": "flutterstarter@yopmail.com",
+  "password": "FlutterStarter"
+}'
+```
+```
+{
+	"id": "e857af43-64e8-4678-a1c5-93a125e74b9a",
+	"email": "flutterstarter@yopmail.com"
+}
+```
+---
+```
+curl --request POST \
+  --url http://localhost:3000/users/login \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"email": "flutterstarter@yopmail.com",
+  "password": "FlutterStarter"
+}'
+```
+```
+{
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g"
+}
+```
+--- 
+```
+curl --request GET \
+  --url http://localhost:3000/todos
+```
+```
+{
+	"error": {
+		"statusCode": 401,
+		"name": "UnauthorizedError",
+		"message": "Authorization header not found."
+	}
+}
+```
+--- 
+```
+curl --request GET \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json'
+```
+```
+[
+	{
+		"id": 1,
+		"title": "Take over the galaxy",
+		"desc": "MWAHAHAHAHAHAHAHAHAHAHAHAHAMWAHAHAHAHAHAHAHAHAHAHAHAHA"
+	},
+	{
+		"id": 2,
+		"title": "destroy alderaan",
+		"desc": "Make sure there are no survivors left!"
+	},
+	{
+		"id": 3,
+		"title": "play space invaders",
+		"desc": "Become the very best!"
+	},
+	{
+		"id": 4,
+		"title": "crush rebel scum",
+		"desc": "Every.Last.One."
+	}
+]
+```
+--- 
+More todo to check saving scroll position for bottom navigation
+```
+curl --request POST \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Do sport",
+  "desc": "running, biking and swiming",
+  "isComplete": false
+}'
+```
+```
+curl --request POST \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Walk his dog",
+  "desc": "He deserves it",
+  "isComplete": false
+}'
+```
+```
+curl --request POST \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Meditate",
+  "desc": "Always a good idea",
+  "isComplete": false
+}'
+```
+```
+curl --request POST \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Learn new things",
+  "desc": "Just 1% better every day",
+  "isComplete": false
+}'
+```
+```
+curl --request POST \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Respect clean archi and SOLID",
+  "desc": "Make your app maintainable",
+  "isComplete": false
+}'
+```
+```
+curl --request POST \
+  --url http://localhost:3000/todos \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NTdhZjQzLTY0ZTgtNDY3OC1hMWM1LTkzYTEyNWU3NGI5YSIsImVtYWlsIjoiZmx1dHRlcnN0YXJ0ZXJAeW9wbWFpbC5jb20iLCJpYXQiOjE2ODU2Mjg5ODUsImV4cCI6MTY4NTY1MDU4NX0.Ffajqo2VFi5zrotMsAVsJrYLTHozfgOzv3CxLx_d98g' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Enjoy the sun",
+  "desc": "Take your vitamin D shot",
+  "isComplete": false
+}'
+```
+
 

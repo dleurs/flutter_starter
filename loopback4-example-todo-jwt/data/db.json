@@ -1,0 +1,27 @@
+{
+  "ids": {
+    "Todo": 11,
+    "User": 5,
+    "UserCredentials": 2
+  },
+  "models": {
+    "Todo": {
+      "1": "{\"title\":\"Take over the galaxy\",\"desc\":\"MWAHAHAHAHAHAHAHAHAHAHAHAHAMWAHAHAHAHAHAHAHAHAHAHAHAHA\",\"id\":1}",
+      "2": "{\"title\":\"destroy alderaan\",\"desc\":\"Make sure there are no survivors left!\",\"id\":2}",
+      "3": "{\"title\":\"play space invaders\",\"desc\":\"Become the very best!\",\"id\":3}",
+      "4": "{\"title\":\"crush rebel scum\",\"desc\":\"Every.Last.One.\",\"id\":4}",
+      "5": "{\"title\":\"Do sport\",\"desc\":\"running, biking and swiming\",\"isComplete\":false,\"id\":5}",
+      "6": "{\"title\":\"Walk his dog\",\"desc\":\"He deserves it\",\"isComplete\":false,\"id\":6}",
+      "7": "{\"title\":\"Meditate\",\"desc\":\"Always a good idea\",\"isComplete\":false,\"id\":7}",
+      "8": "{\"title\":\"Learn new things\",\"desc\":\"Just 1% better every day\",\"isComplete\":false,\"id\":8}",
+      "9": "{\"title\":\"Respect clean archi and SOLID\",\"desc\":\"Make your app maintainable\",\"isComplete\":false,\"id\":9}",
+      "10": "{\"title\":\"Enjoy the sun\",\"desc\":\"Take your vitamin D shot\",\"isComplete\":false,\"id\":10}"
+    },
+    "User": {
+      "4": "{\"username\":\"testuser1\",\"email\":\"testuser1@abc.com\",\"id\":4}"
+    },
+    "UserCredentials": {
+      "1": "{\"password\":\"$2a$10$QrcA7GDOZ06TTXEBhuz87On8mcapb9qoU3rjWb7Z5pwBv7ZAbmXwa\",\"userId\":4,\"id\":1}"
+    }
+  }
+}
