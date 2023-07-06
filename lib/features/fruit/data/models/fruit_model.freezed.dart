@@ -26,22 +26,19 @@ mixin _$FruitModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FruitModelCopyWith<FruitModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FruitModelCopyWith<FruitModel> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FruitModelCopyWith<$Res> {
-  factory $FruitModelCopyWith(
-          FruitModel value, $Res Function(FruitModel) then) =
+  factory $FruitModelCopyWith(FruitModel value, $Res Function(FruitModel) then) =
       _$FruitModelCopyWithImpl<$Res, FruitModel>;
   @useResult
   $Res call({String? name, String? family, String? genus});
 }
 
 /// @nodoc
-class _$FruitModelCopyWithImpl<$Res, $Val extends FruitModel>
-    implements $FruitModelCopyWith<$Res> {
+class _$FruitModelCopyWithImpl<$Res, $Val extends FruitModel> implements $FruitModelCopyWith<$Res> {
   _$FruitModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -74,10 +71,8 @@ class _$FruitModelCopyWithImpl<$Res, $Val extends FruitModel>
 }
 
 /// @nodoc
-abstract class _$$_FruitModelCopyWith<$Res>
-    implements $FruitModelCopyWith<$Res> {
-  factory _$$_FruitModelCopyWith(
-          _$_FruitModel value, $Res Function(_$_FruitModel) then) =
+abstract class _$$_FruitModelCopyWith<$Res> implements $FruitModelCopyWith<$Res> {
+  factory _$$_FruitModelCopyWith(_$_FruitModel value, $Res Function(_$_FruitModel) then) =
       __$$_FruitModelCopyWithImpl<$Res>;
   @override
   @useResult
@@ -85,12 +80,9 @@ abstract class _$$_FruitModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_FruitModelCopyWithImpl<$Res>
-    extends _$FruitModelCopyWithImpl<$Res, _$_FruitModel>
+class __$$_FruitModelCopyWithImpl<$Res> extends _$FruitModelCopyWithImpl<$Res, _$_FruitModel>
     implements _$$_FruitModelCopyWith<$Res> {
-  __$$_FruitModelCopyWithImpl(
-      _$_FruitModel _value, $Res Function(_$_FruitModel) _then)
-      : super(_value, _then);
+  __$$_FruitModelCopyWithImpl(_$_FruitModel _value, $Res Function(_$_FruitModel) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -121,8 +113,7 @@ class __$$_FruitModelCopyWithImpl<$Res>
 class _$_FruitModel implements _FruitModel {
   const _$_FruitModel({this.name, this.family, this.genus});
 
-  factory _$_FruitModel.fromJson(Map<String, dynamic> json) =>
-      _$$_FruitModelFromJson(json);
+  factory _$_FruitModel.fromJson(Map<String, dynamic> json) => _$$_FruitModelFromJson(json);
 
   @override
   final String? name;
@@ -153,8 +144,7 @@ class _$_FruitModel implements _FruitModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FruitModelCopyWith<_$_FruitModel> get copyWith =>
-      __$$_FruitModelCopyWithImpl<_$_FruitModel>(this, _$identity);
+  _$$_FruitModelCopyWith<_$_FruitModel> get copyWith => __$$_FruitModelCopyWithImpl<_$_FruitModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -165,13 +155,9 @@ class _$_FruitModel implements _FruitModel {
 }
 
 abstract class _FruitModel implements FruitModel {
-  const factory _FruitModel(
-      {final String? name,
-      final String? family,
-      final String? genus}) = _$_FruitModel;
+  const factory _FruitModel({final String? name, final String? family, final String? genus}) = _$_FruitModel;
 
-  factory _FruitModel.fromJson(Map<String, dynamic> json) =
-      _$_FruitModel.fromJson;
+  factory _FruitModel.fromJson(Map<String, dynamic> json) = _$_FruitModel.fromJson;
 
   @override
   String? get name;
@@ -181,6 +167,5 @@ abstract class _FruitModel implements FruitModel {
   String? get genus;
   @override
   @JsonKey(ignore: true)
-  _$$_FruitModelCopyWith<_$_FruitModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_FruitModelCopyWith<_$_FruitModel> get copyWith => throw _privateConstructorUsedError;
 }
