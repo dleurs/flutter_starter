@@ -2,6 +2,8 @@
 
 A Flutter starter to quickly create a new flutter app
 
+![list-fruits-displayed](readme_images/list-fruits-displayed.png)
+
 What is inside this project ?
 
 1. State management using Cubit
@@ -98,32 +100,27 @@ You can start with data layer if the structure of your data will be taken from t
 
 Inside ```lib/features/fruits/domain/entities``` : 
 
-```fruits.dart```
+```fruits_entity.dart```
 ```
-class Fruit {
-  final String name;
-  final String family;
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'fruit_entity.freezed.dart';
+
+@freezed
+class FruitEntity with _$FruitEntity {
+  const factory FruitEntity({
+    required String name,
+    required String family,
+    required FruitGenus genus,
+  }) = _FruitEntity;
 }
 ```
 
-Generate constructor with VSCode : 
+Create generated files : 
 
-![create-constructor](readme_images/create-constructor.png)
-
-With VSCode extension ```Dart Data Class Generator```, generate data class.
-
-![auto-create-data-class](readme_images/auto-create-data-class.png)
-
-You can also used @freezed and generated code, but with bug apps it can take up to 5/10 minutes to build everything so I prefer having generated code only if necessary (I am not 100% sure about this, maybe just use generated code without gitignoring it)
-
-Here some tests : 
-
-![fruit-test-1](readme_images/fruit-test-1.png)
-
-![fruit-test-2](readme_images/fruit-test-2.png)
-
-![fruit-test-3](readme_images/fruit-test-3.png)
-
+```
+make generate
+```
 
 ### I.2 Repository
 
@@ -134,7 +131,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit.dart';
 
 abstract class FruitRepository {
-  Future<Either<Exception, List<Fruit>>> getFruits();
+  Future<Either<Exception, List<FruitEntity>>> getFruits();
 }
 ```
 
@@ -153,12 +150,12 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetFruitUseCase
-    extends BaseFutureWithEmptyParamsUseCase<Exception, List<Fruit>> {
+    extends BaseFutureWithEmptyParamsUseCase<Exception, List<FruitEntity>> {
   final FruitRepository _fruitRepository;
   GetFruitUseCase(this._fruitRepository);
 
   @override
-  Future<Either<Exception, List<Fruit>>> call() async {
+  Future<Either<Exception, List<FruitEntity>>> call() async {
     return await _fruitRepository.getFruits();
   }
 }
@@ -178,16 +175,27 @@ First, check the data source on a browser ```https://fruityvice.com/api/fruit/al
 Then, inside ```lib/features/fruit/data/models/fruit_model.dart```
 
 ```
-class FruitModel {
-  final String? name;
-  final String? family;
-  final String? genus;
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'fruit_model.freezed.dart';
+
+@freezed
+class FruitModel with _$FruitModel {
+  const factory FruitModel({
+    String? name,
+    String? family,
+    String? genus,
+  }) = _FruitModel;
+
+  factory FruitModel.fromJson(Map<String, dynamic> json) => _$FruitModelFromJson(json);
 }
 ```
 
 Inside models, everything could be null. You should never trust what will be retrive by the server.
 
-Then, clic ```Generate constructor``` ```Generate data class```
+```
+make generate
+```
 
 ### II.2. Data source / API
 
@@ -240,14 +248,14 @@ import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit.dart';
 
 extension FruitMapper on FruitModel {
-  Fruit toEntity() => Fruit(
+  FruitEntity toEntity() => FruitEntity(
       name: name ?? AppConstants.emptyString,
       family: family ?? AppConstants.emptyString,
       genus: FruitGenus.getFruitGenus(genus));
 }
 
 extension FruitListMapper on List<FruitModel>? {
-  List<Fruit> toEntity() =>
+  List<FruitEntity> toEntity() =>
       this?.map((model) => model.toEntity()).toList() ?? List.empty();
 }
 ```
@@ -268,7 +276,7 @@ class FruitRepositoryImpl implements FruitRepository {
   FruitRepositoryImpl(this._fruitApi);
 
   @override
-  Future<Either<Exception, List<Fruit>>> getFruits() async {
+  Future<Either<Exception, List<FruitEntity>>> getFruits() async {
     try {
       final fruitsModel = await _fruitApi.getFruits();
       final fruits = fruitsModel.toEntity();
@@ -329,19 +337,26 @@ class FruitCubit extends Cubit<FruitState> {
 Inside ```lib/features/fruit/presentation/cubit/fruit_state.dart```
 
 ```
-  final bool isLoading;
-  final List<Fruit> fruits;
-  final String? errorMessage;
-  FruitState({
-    this.isLoading = false,
-    this.fruits = const [],
-    this.errorMessage,
-  });
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'fruit_state.freezed.dart';
+
+@freezed
+class FruitState with _$FruitState {
+  const factory FruitState({
+    @Default(false) bool isLoading,
+    @Default([]) List<FruitEntity> fruits,
+    String? errorMessage,
+  }) = _FruitState;
+}
 ```
 
 Be careful of default value in constructor,```this.isLoading = false,``` 
 
-Then clic ```Generate data class```
+```
+make generate
+```
 
 
 ### III.2. Page
@@ -393,6 +408,3 @@ class FruitPage extends StatelessWidget {
   }
 }
 ```
-
-![list-fruits-displayed](readme_images/list-fruits-displayed.png)
-
