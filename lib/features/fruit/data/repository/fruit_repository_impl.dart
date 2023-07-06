@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart';
 import 'package:flutter_starter/features/fruit/data/mapper/fruit_mapper.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
-import 'package:flutter_starter/features/fruit/domain/repository/fruit_repository.dart';
+import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: FruitRepository)

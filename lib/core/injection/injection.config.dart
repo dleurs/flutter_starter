@@ -16,7 +16,7 @@ import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart'
     as _i4;
 import 'package:flutter_starter/features/fruit/data/repository/fruit_repository_impl.dart'
     as _i6;
-import 'package:flutter_starter/features/fruit/domain/repository/fruit_repository.dart'
+import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart'
     as _i5;
 import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart'
     as _i7;

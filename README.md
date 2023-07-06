@@ -43,9 +43,9 @@ Check VSCode config ```.vscode/settings.json```
 https://fvm.app/docs/getting_started/installation
 
 ```
-fvm use 3.10.2 
+fvm use 3.10.5
 ```
-Check lastest version inside .fvm/fvm_config.json
+Check lastest version inside ```.fvm/fvm_config.json```
 
 Inside .zshrc / your terminal
 ```
@@ -72,7 +72,7 @@ Then go inside this folder and execute :
 mkdir domain;
 cd domain;
 mkdir entities;
-mkdir repository;
+mkdir repository_abstract;
 mkdir usecases;
 cd ..;
 
@@ -80,15 +80,22 @@ mkdir data;
 cd data;
 mkdir data_sources;
 mkdir models;
-mkdir repoditory;
+mkdir repository;
 mkdir mapper;
 cd ..;
 
-mkdir cd presentation;
+mkdir presentation;
 cd presentation;
 mkdir cubit;
 mkdir pages;
 mkdir widgets;
+cd ..;
+```
+
+If your feature require a service, for example getting device platform (iOS or Android) and version, geolocalisation or local database :
+```
+cd domain;
+mkdir dervice;
 cd ..;
 ```
 
@@ -124,7 +131,7 @@ make generate
 
 ### I.2 Repository
 
-Inside ```lib/features/fruit/domain/repository/fruit_repository.dart```
+Inside ```lib/features/fruit/domain/repository_abstract/fruit_repository.dart```
 
 ```
 import 'package:dartz/dartz.dart';
@@ -139,13 +146,17 @@ Not sure that having Exception type as error a good idea. Maybe creating a one o
 
 ### I.3 Usecase
 
+Most of the times, usecases will just call a repository, but sometimes it can contains more intelligence / more code, and will prevent duplication of code inside of differents cubits calling the same usecase. 
+
+So you can choose not to use usecase to reduce code / or only when needed (intelligence used in multiple cubits).
+
 Inside ```lib/features/fruit/domain/usecases/get_fruit_usecase.dart```
 
 ```
 import 'package:dartz/dartz.dart';
 import 'package:flutter_starter/core/usecase/usecase.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit.dart';
-import 'package:flutter_starter/features/fruit/domain/repository/fruit_repository.dart';
+import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -162,8 +173,6 @@ class GetFruitUseCase
 ```
 
 Here the usecase and the repo does not have parameters, if so, use ```BaseFutureUseCase<E, T, P>```
-
-Most of the times, usecases will just call a repository, but sometimes it can contains more intelligence / more code, and will prevent duplication of code inside of differents cubits calling the same usecase
 
 ## II. Data
 ### II.1. Models
@@ -267,7 +276,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart';
 import 'package:flutter_starter/features/fruit/data/mapper/fruit_mapper.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit.dart';
-import 'package:flutter_starter/features/fruit/domain/repository/fruit_repository.dart';
+import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: FruitRepository)
