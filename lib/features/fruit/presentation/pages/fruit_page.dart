@@ -1,7 +1,7 @@
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/features/fruit/domain/entities/fruit.dart';
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
 import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_cubit.dart';
 import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_state.dart';
 import 'package:get_it/get_it.dart';

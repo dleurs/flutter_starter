@@ -48,6 +48,13 @@ dependencies:
   flutter_bloc: ^8.1.3
   #https://pub.dev/packages/get_it/changelog
   get_it: ^7.6.0
+  #https://pub.dev/packages/fast_immutable_collections/changelog
+  fast_immutable_collections: ^9.1.5
+  #https://pub.dev/packages/freezed_annotation/changelog
+  freezed_annotation: ^2.2.0
+  # Required for freezed toJson/fromJson
+  #https://pub.dev/packages/json_annotation/changelog
+  json_annotation: ^4.8.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,15 +68,17 @@ dev_dependencies:
   #https://pub.dev/packages/injectable_generator/changelog
   injectable_generator: ^2.1.6
 
-  #required for retrofit : https://pub.dev/packages/retrofit
+  #required for retrofit
   #https://pub.dev/packages/retrofit_generator/changelog
   retrofit_generator: ^7.0.1
-  #required for retrofit : https://pub.dev/packages/retrofit
+  #required for retrofit and freezed
   #https://pub.dev/packages/build_runner/changelog
-  build_runner: ^2.4.4
-  #required for retrofit : https://pub.dev/packages/retrofit
+  build_runner: ^2.4.6
+  #required for retrofit and freezed
   #https://pub.dev/packages/json_serializable/changelog
   json_serializable: ^6.7.0
+  #https://pub.dev/packages/freezed/changelog
+  freezed: ^2.3.5
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
