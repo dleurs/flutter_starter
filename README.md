@@ -92,7 +92,7 @@ mkdir widgets;
 cd ..;
 ```
 
-If your feature require a service, for example getting device platform (iOS or Android) and version, geolocalisation or local database :
+If your feature require a service, for example getting device platform (iOS or Android) and version, geolocalisation or local database:
 ```
 cd domain;
 mkdir dervice;
