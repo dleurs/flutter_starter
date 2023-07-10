@@ -182,6 +182,9 @@ First, check the data source on a browser ```https://fruityvice.com/api/fruit/al
 
 ![browser-json](readme_images/browser-json.png)
 
+```
+```
+
 Then, inside ```lib/features/fruit/data/models/fruit_model.dart```
 
 ```
@@ -223,7 +226,6 @@ part 'fruit_api.g.dart';
 @lazySingleton
 @RestApi(
   baseUrl: ApiConstants.fruitsClient,
-  parser: Parser.MapSerializable,
 )
 abstract class FruitApi {
   factory FruitApi(@Named(ApiConstants.publicHttpClient) Dio dio) = _FruitApi;
@@ -433,9 +435,120 @@ class FruitPage extends StatelessWidget {
 
 ### IV. Tests
 
+```
+cd test; cd features;
+```
+```
+mkdir fruit; cd fruit;
+```
+
+```
+mkdir mock;
+
+mkdir domain;
+cd domain;
+mkdir usecases;
+mkdir utils;
+cd ..;
+
+mkdir data;
+cd data;
+mkdir repository;
+mkdir mapper;
+cd ..;
+
+mkdir presentation;
+cd presentation;
+mkdir cubit;
+mkdir pages;
+mkdir widgets;
+cd ..;
+```
+
 ### IV.1. Unit tests
-### IV.2. Code coverage
 
-### IV.3. Golden tests
+Let's start by test the data layer
 
-### IV.4. Integration tests
+#### IV.1.a Mock
+
+```
+cd mock; 
+```
+```
+touch fruit_mock.dart
+```
+```
+class FruitMock {
+  
+}
+```
+Then check brut data on ```https://fruityvice.com/api/fruit/all``` and pick relevant data to mock
+
+You will define : 
+- FruitsJson
+- FruitsModel
+- FruitsEntity
+
+```
+import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
+
+class FruitMock {
+  static const fruitsJson = {
+    [
+      {
+        "name": "Persimmon",
+        "id": 52,
+        "family": "Ebenaceae",
+        "order": "Rosales",
+        "genus": "Diospyros",
+        "nutritions": {"calories": 81, "fat": 0.0, "sugar": 18.0, "carbohydrates": 18.0, "protein": 0.0}
+      },
+      {
+        "name": "Lemon",
+        "id": 26,
+        "family": "Rutaceae",
+        "order": "Sapindales",
+        "genus": "Citrus",
+        "nutritions": {"calories": 29, "fat": 0.3, "sugar": 2.5, "carbohydrates": 9.0, "protein": 1.1}
+      },
+    ]
+  };
+
+  static const fruitsModel = [
+    FruitModel(
+      name: "Persimmon",
+      family: "Ebenaceae",
+      genus: "Diospyros",
+    ),
+    FruitModel(
+      name: "Lemon",
+      family: "Rutaceae",
+      genus: "Citrus",
+    ),
+  ];
+
+  static const fruitsEntity = [
+    FruitEntity(
+      name: "Persimmon",
+      family: "Ebenaceae",
+      genus: FruitGenus.unknown,
+    ),
+    FruitEntity(
+      name: "Lemon",
+      family: "Rutaceae",
+      genus: FruitGenus.citrus,
+    ),
+  ];
+}
+```
+#### IV.1.b Data & domain, test du mapper 
+
+```
+cd data; cd mapper; touch fruit_mapper_test.dart;
+```
+
+
+
+
+
