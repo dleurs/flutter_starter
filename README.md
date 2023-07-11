@@ -75,15 +75,11 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # Design
 
-Check [Material 3 live Demo'](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/flutter/samples/blob/main/material_3_demo/lib)
-
-[m3_design_live](readme_images/m3_design_live.png)
+Check [Material 3 live demo](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/flutter/samples/blob/main/material_3_demo/lib)
 
 Check [Figma Material 3](https://www.figma.com/file/WBvXO7j9lPAvScv3AEfh3u/Material-3-Design-Kit-(Community)?type=design&node-id=11-1833&mode=design&t=Nu1Vy66xf64eY9uo-0)
 
-[figma](readme_images/figma.png)
-
-Check [flutter icons](https://api.flutter.dev/flutter/material/Icons-class.html)
+Check [Flutter Icons](https://api.flutter.dev/flutter/material/Icons-class.html)
 
 # Documentation
 
