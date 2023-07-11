@@ -31,6 +31,11 @@ Bonuses :
 - [Coming soon] Splash screen to initialize the app
 
 
+Open dicussion : 
+- Using Riverpod or BLoC/Getit for state management ?
+- 
+
+
 ### VSCode config
 
 Check VSCode config ```.vscode/settings.json```
@@ -52,12 +57,21 @@ Inside .zshrc / your terminal
 export PATH="$PATH:/Users/dleurs/fvm/versions/3.10.2/bin"
 ```
 ```
-$ flutter --version
+fvm flutter --version
 
 Flutter 3.10.2 • channel stable • https://github.com/flutter/flutter.git
 Framework • revision 9cd3d0d9ff (2 days ago) • 2023-05-23 20:57:28 -0700
 Engine • revision 90fa3ae28f
 Tools • Dart 3.0.2 • DevTools 2.23.1
+```
+
+### Package
+
+For tests
+```
+brew install lcov
+dart pub global activate remove_from_coverage
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 ```
 
 # Adding a new HTTP endpoint
@@ -469,13 +483,29 @@ cd ..;
 
 Let's start by test the data layer
 
-#### IV.1.a Mock
+#### IV.1.a All tests and mock
 
 ```
-cd mock; 
+Inside test/all_tests.dart;
 ```
 ```
-touch fruit_mock.dart
+// Fruit feature
+import './features/fruit/data/mapper/fruit_mapper_test.dart' as fruit_mapper_test;
+import './features/fruit/data/repository/fruit_repository_test.dart' as fruit_repository_test;
+import './features/fruit/domain/usecases/fruit_usecase_test.dart' as fruit_usecase_test;
+import './features/fruit/presentation/cubit/fruit_cubit_test.dart' as fruit_cubit_test;
+
+void main() {
+  // Fruit feature
+  fruit_mapper_test.main();
+  fruit_repository_test.main();
+  fruit_usecase_test.main();
+  fruit_cubit_test.main();
+}
+```
+
+```
+cd mock; touch fruit_data_mock.dart
 ```
 ```
 class FruitMock {
@@ -493,7 +523,7 @@ You will define :
 import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
 
-class FruitMock {
+class FruitDataMock {
   static const fruitsJson = {
     [
       {
@@ -542,11 +572,309 @@ class FruitMock {
   ];
 }
 ```
-#### IV.1.b Data & domain, test du mapper 
+#### IV.1.b Mapper
 
 ```
 cd data; cd mapper; touch fruit_mapper_test.dart;
 ```
+```
+import 'package:flutter_starter/features/fruit/data/mapper/fruit_mapper.dart';
+import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../../mock/fruit_mock.dart';
+
+void main() {
+  group('[Fruit] [Mapper] :', () {
+    test('FruitModel from Json', () {
+      final modelFromJson = FruitModel.fromJson(FruitMock.fruitsJson[0]);
+      expect(modelFromJson, equals(FruitMock.fruitsModel[0]));
+    });
+    test('FruitEntity from FruitModel', () {
+      final entityFromModel = FruitMock.fruitsModel[0].toEntity();
+      expect(entityFromModel, equals(FruitMock.fruitsEntity[0]));
+    });
+
+    test('FruitsEntity (list) from FruitsModel (list)', () {
+      final entitiesFromModels = FruitMock.fruitsModel.toEntity();
+      expect(entitiesFromModels, equals(FruitMock.fruitsEntity));
+    });
+  });
+}
+```
+
+#### IV.1.c Repository
+
+```
+cd mock; touch fruit_class_mock.dart
+```
+```
+import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockFruitApi extends Mock implements FruitApi {}
+```
+
+```
+cd data; cd repository; touch fruit_repository_test.dart;
+```
+```
+import 'dart:async';
+
+import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart';
+import 'package:flutter_starter/features/fruit/data/repository/fruit_repository_impl.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../mock/fruit_class_mock.dart';
+import '../../mock/fruit_data_mock.dart';
+
+void main() {
+  late FruitApi mockFruitApi;
+  late FruitRepositoryImpl repository;
+
+  setUp(() {
+    mockFruitApi = MockFruitApi();
+    repository = FruitRepositoryImpl(mockFruitApi);
+  });
+
+  group('[Fruit] [Repository] :', () {
+    test('Calling repository.getFruits() when success', () async {
+      //GIVEN
+      when(() => mockFruitApi.getFruits()).thenAnswer(
+        (_) => Future.value(FruitDataMock.fruitsModel),
+      );
+      //WHEN
+      final result = await repository.getFruits();
+      //THEN
+      verify(
+        () => mockFruitApi.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) => null,
+        (data) {
+          expect(data, FruitDataMock.fruitsEntity);
+        },
+      );
+    });
+
+    test('Calling repository.getFruits() when error', () async {
+      final timeoutException = TimeoutException('timeout');
+      //GIVEN
+      when(() => mockFruitApi.getFruits()).thenThrow(timeoutException);
+      //WHEN
+      final result = await repository.getFruits();
+      //THEN
+      verify(
+        () => mockFruitApi.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) {
+          expect(error, timeoutException);
+        },
+        (data) => null,
+      );
+    });
+  });
+}
+```
+
+#### IV.1.d Usecase
+
+```
+cd mock; code fruit_class_mock.dart
+```
+Add : 
+```
+class MockFruitRepository extends Mock implements FruitRepository {}
+```
+```
+cd domain; cd usecase; touch fruit_usecase_test.dart;
+```
+```
+import 'dart:async';
+
+import 'package:dartz/dartz.dart';
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
+import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart';
+import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../mock/fruit_class_mock.dart';
+import '../../mock/fruit_data_mock.dart';
+
+void main() {
+  late GetFruitUseCase getFruitUseCase;
+  late FruitRepository mockFruitRepository;
+
+  setUp(() {
+    mockFruitRepository = MockFruitRepository();
+    getFruitUseCase = GetFruitUseCase(mockFruitRepository);
+  });
+
+  group('[Fruit] [Usecase] :', () {
+    test('Calling getFruitUseCase() when success', () async {
+      //GIVEN
+      when(() => mockFruitRepository.getFruits())
+          .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+                const Right(FruitDataMock.fruitsEntity),
+              ));
+      //WHEN
+      final result = await getFruitUseCase();
+      //THEN
+      verify(
+        () => mockFruitRepository.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) => null,
+        (data) {
+          expect(data, FruitDataMock.fruitsEntity);
+        },
+      );
+    });
+
+    test('Calling getFruitUseCase() when error', () async {
+      final timeoutException = TimeoutException('timeout');
+      //GIVEN
+      when(() => mockFruitRepository.getFruits())
+          .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+                Left(timeoutException),
+              ));
+      //WHEN
+      final result = await getFruitUseCase();
+      //THEN
+      verify(
+        () => mockFruitRepository.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) => {expect(error, timeoutException)},
+        (data) => null,
+      );
+    });
+  });
+}
+```
+
+#### IV.1.e Cubit
+
+```
+cd mock; code fruit_class_mock.dart
+```
+Add : 
+```
+class MockFruitRepository extends Mock implements FruitRepository {}
+```
+```
+cd domain; cd usecase; touch fruit_usecase_test.dart;
+```
+```
+import 'dart:async';
+
+import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
+import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart';
+import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_cubit.dart';
+import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_state.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../mock/fruit_class_mock.dart';
+import '../../mock/fruit_data_mock.dart';
+
+void main() {
+  late GetFruitUseCase mockGetFruitUseCase;
+
+  setUp(() {
+    mockGetFruitUseCase = MockGetFruitUseCase();
+  });
+
+  FruitCubit buildCubit() {
+    return FruitCubit(getFruitUseCase: mockGetFruitUseCase);
+  }
+
+  group('[Fruit] [Cubit] :', () {
+    final timeoutException = TimeoutException('timeout');
+
+    group('constructor', () {
+      test('works properly', () {
+        //THEN
+        expect(buildCubit, returnsNormally);
+      });
+    });
+
+    blocTest<FruitCubit, FruitState>(
+      'cubit.getFruits() when success',
+      setUp: () {
+        when(() => mockGetFruitUseCase()).thenAnswer(
+            (_) async => Future<Either<Exception, List<FruitEntity>>>.value(const Right(FruitDataMock.fruitsEntity)));
+      },
+
+      //WHEN
+      build: buildCubit,
+      act: (cubit) => cubit.getFruits(),
+      //THEN
+      expect: () => [
+        const FruitState(
+          isLoading: true,
+          fruits: [],
+          errorMessage: null,
+        ),
+        const FruitState(
+          isLoading: false,
+          fruits: FruitDataMock.fruitsEntity,
+          errorMessage: null,
+        )
+      ],
+    );
+
+    blocTest<FruitCubit, FruitState>(
+      'cubit.getFruits() when failure',
+
+      setUp: () {
+        when(() => mockGetFruitUseCase())
+            .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(Left(timeoutException)));
+      },
+
+      //WHEN
+      build: buildCubit,
+      act: (cubit) => cubit.getFruits(),
+      //THEN
+      expect: () => [
+        const FruitState(
+          isLoading: true,
+          fruits: [],
+          errorMessage: null,
+        ),
+        FruitState(
+          isLoading: false,
+          fruits: [],
+          errorMessage: timeoutException.toString(),
+        )
+      ],
+    );
+  });
+}
+```
+
+#### IV.1.f Setup coverage
+
+```
+brew install lcov
+dart pub global activate remove_from_coverage
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+```
+
+```
+make tests
+```
+
+![lcov-test-result](readme_images/lcov-test-result.png)
 
 
 

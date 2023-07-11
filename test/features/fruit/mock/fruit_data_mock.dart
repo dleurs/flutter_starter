@@ -1,7 +1,7 @@
 import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
 
-class FruitMock {
+class FruitDataMock {
   static const fruitsJson = [
     {
       "name": "Persimmon",
