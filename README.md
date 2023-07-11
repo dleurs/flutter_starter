@@ -4,7 +4,7 @@ A Flutter starter to quickly create a new flutter app
 
 ![app_demo](readme_images/app_demo.gif)
 
-What is inside this project ?
+## What is inside this project ?
 
 1. State management using Cubit
 2. Clean archi : Presentation / Domain / Data : 
@@ -73,24 +73,22 @@ dart pub global activate remove_from_coverage
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 ```
 
-# Design
+## Links
 
-Check [Material 3 live demo](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/flutter/samples/blob/main/material_3_demo/lib)
+### Documentation
 
-Check [Figma Material 3](https://www.figma.com/file/WBvXO7j9lPAvScv3AEfh3u/Material-3-Design-Kit-(Community)?type=design&node-id=11-1833&mode=design&t=Nu1Vy66xf64eY9uo-0)
+- Check [Flutter docs](https://docs.flutter.dev/ui/widgets-intro), [github's here](https://github.com/flutter/flutter)
 
-Check [Flutter Icons](https://api.flutter.dev/flutter/material/Icons-class.html)
+- Check [Flutter samples](https://flutter.github.io/samples/#), [github's here](https://github.com/flutter/samples)
+### Design
 
-# Documentation
+- Check [Material Design 3](https://m3.material.io)
 
-Check [Flutter docs](https://docs.flutter.dev/ui/widgets-intro), [github's here](https://github.com/flutter/flutter)
+- Check [Material 3 live demo](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/flutter/samples/blob/main/material_3_demo/lib)
 
-Check [Flutter samples](https://flutter.github.io/samples/#), [github's here](https://github.com/flutter/samples)
+- Check [Figma Material 3](https://www.figma.com/file/WBvXO7j9lPAvScv3AEfh3u/Material-3-Design-Kit-(Community)?type=design&node-id=11-1833&mode=design&t=Nu1Vy66xf64eY9uo-0)
 
-
-
-
-
+- Check [Flutter Icons](https://api.flutter.dev/flutter/material/Icons-class.html)
 # Adding a new HTTP endpoint
 
 Example implementing fruityvice Free Api https://fruityvice.com/api/fruit/all
