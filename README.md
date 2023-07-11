@@ -9,31 +9,30 @@ What is inside this project ?
 1. State management using Cubit
 2. Clean archi : Presentation / Domain / Data : 
 - UI <-- BlocBuilder --> Cubit <-- function/state --> UseCase <-- Entity --> Repository <-- Model --> API
+3. Unit tests with code coverage with lcov
+4. [Coming soon] Golden test and integration test
 5. [Coming soon] Theming, Design Pattern, black/white theme
 6. [Coming soon] Navigation for mobile and web with Beamer
-7. [Coming soon] Unit tests with code coverage, golden test ans integration test
-8. [Coming soon] Internalisation with Firebase, dealing with online and offline
-9. [Coming soon] Dev / Staging / Prod versions
-10. [Coming soon] CICD fastlane locally and with Github Actions, upload to Google Play / Apple Store
-
+7. [Coming soon] Internalisation with Firebase, dealing with online and offline
+8. [Coming soon] Dev / Staging / Prod versions
+9. [Coming soon] CICD fastlane locally and with Github Actions, upload to Google Play / Apple Store
 
 
 Bonuses : 
 - HTTP Rest request with Retrofit & Dio
-- [Coming soon] Stream handling / Firebase Firestore Database
-- [Coming soon] Retriving/upload media with Firebase Storage
-- [Coming soon] Hosting flutter web with
 - [Coming soon] Configuration with Firebase Remote Config 
-- [Coming soon] Handling crash and crashlytics
-- [Coming soon] Handling analytics / screen times
+- [Coming soon] Handling crash and crashlytics with Firebase
+- [Coming soon] Handling analytics / screen times with Firebase
+- [Coming soon] Handling internalisation with Google Sheet
+- [Coming soon] Hosting flutter web 
 - [Coming soon] Authentication forms
 - [Coming soon] Handling fvm, flutter version management
-- [Coming soon] Splash screen to initialize the app
+- [Coming soon] Splash screen to initialize the app (remote config)
 
 
 Open dicussion : 
-- Using Riverpod or BLoC/Getit for state management ?
-- 
+- [ State management ] Using Riverpod or BLoC/Getit ?
+- [ Navigation ] Using Beamer or GoRouter ?
 
 
 ### VSCode config
@@ -73,6 +72,22 @@ brew install lcov
 dart pub global activate remove_from_coverage
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 ```
+
+# Design
+
+Check [Material 3 live Demo'](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/chayanforyou/flutter_material_3_demo)
+
+[m3_design_live](readme_images/m3_design_live.png)
+
+Check [Figma Material 3](https://www.figma.com/file/WBvXO7j9lPAvScv3AEfh3u/Material-3-Design-Kit-(Community)?type=design&node-id=11-1833&mode=design&t=Nu1Vy66xf64eY9uo-0)
+
+[figma](readme_images/figma.png)
+
+Check [flutter icons](https://api.flutter.dev/flutter/material/Icons-class.html)
+
+
+
+
 
 # Adding a new HTTP endpoint
 
