@@ -1,4 +1,4 @@
-import 'package:flutter_starter/core/constants/app_constants.dart';
+import 'package:flutter_starter/core/services/app_constants.dart';
 import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
 

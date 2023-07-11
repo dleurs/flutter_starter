@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:dart_extensions/dart_extensions.dart';
-import 'package:flutter_starter/core/constants/app_constants.dart';
+import 'package:flutter_starter/core/services/app_constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'fruit_entity.freezed.dart';
