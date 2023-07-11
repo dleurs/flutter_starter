@@ -1,4 +1,4 @@
-// From https://github.com/chayanforyou/flutter_material_3_demo/blob/master/lib/color_palettes_screen.dart
+// From https://github.com/chayanforyou/flutter_material_3_demo/tree/master/lib
 // commit e3182df
 
 import 'package:flutter/material.dart';
@@ -29,6 +29,24 @@ class ColorPalettesWidget extends StatelessWidget {
       );
     }
 
+    Widget dynamicColorNotice() => RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodySmall,
+            children: const [
+              TextSpan(
+                  text: 'To create color schemes based on a '
+                      'platform\'s implementation of dynamic color, '
+                      'use the '),
+              TextSpan(
+                text: 'dynamic_color',
+                style: TextStyle(decoration: TextDecoration.underline),
+              ),
+              TextSpan(text: ' package.'),
+            ],
+          ),
+        );
+
     Widget schemeView(ThemeData theme) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -38,22 +56,27 @@ class ColorPalettesWidget extends StatelessWidget {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.only(top: 5),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              children: [schemeLabel("Light Theme"), schemeView(lightTheme)],
-            ),
+    return Column(
+      children: [
+        dynamicColorNotice(),
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [schemeLabel("Light Theme"), schemeView(lightTheme)],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [schemeLabel("Dark Theme"), schemeView(darkTheme)],
+                ),
+              )
+            ],
           ),
-          Expanded(
-            child: Column(
-              children: [schemeLabel("Dark Theme"), schemeView(darkTheme)],
-            ),
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

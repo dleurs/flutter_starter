@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/features/fruit/presentation/pages/fruit_page.dart';
-import 'package:flutter_starter/features/theme_demo/presentation/pages/design_demo_page.dart';
+import 'package:flutter_starter/features/design_demo/presentation/pages/design_demo_page.dart';
 
 class AppBottomNavBar extends StatefulWidget {
   const AppBottomNavBar({super.key});

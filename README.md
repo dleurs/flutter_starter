@@ -10,8 +10,8 @@ What is inside this project ?
 2. Clean archi : Presentation / Domain / Data : 
 - UI <-- BlocBuilder --> Cubit <-- function/state --> UseCase <-- Entity --> Repository <-- Model --> API
 3. Unit tests with code coverage with lcov
-4. [Coming soon] Golden test and integration test
-5. [Coming soon] Theming, Design Pattern, black/white theme
+4. Typography, color palettes and components of the app displayed 
+5. [Coming soon] Golden test and integration test
 6. [Coming soon] Navigation for mobile and web with Beamer
 7. [Coming soon] Internalisation with Firebase, dealing with online and offline
 8. [Coming soon] Dev / Staging / Prod versions

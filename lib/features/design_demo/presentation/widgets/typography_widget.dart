@@ -1,4 +1,4 @@
-// From https://github.com/chayanforyou/flutter_material_3_demo/blob/master/lib/typography_screen.dart
+// From https://github.com/chayanforyou/flutter_material_3_demo/tree/master/lib
 // commit e3182df
 
 import 'package:flutter/material.dart';
