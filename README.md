@@ -2,7 +2,7 @@
 
 A Flutter starter to quickly create a new flutter app
 
-![list-fruits-displayed](readme_images/list-fruits-displayed.png)
+![app_demo](readme_images/app_demo.gif)
 
 What is inside this project ?
 
@@ -84,6 +84,12 @@ Check [Figma Material 3](https://www.figma.com/file/WBvXO7j9lPAvScv3AEfh3u/Mater
 [figma](readme_images/figma.png)
 
 Check [flutter icons](https://api.flutter.dev/flutter/material/Icons-class.html)
+
+# Documentation
+
+Check [Flutter docs](https://docs.flutter.dev/ui/widgets-intro), [github's here](https://github.com/flutter/flutter)
+
+Check [Flutter samples](https://flutter.github.io/samples/#), [github's here](https://github.com/flutter/samples)
 
 
 
