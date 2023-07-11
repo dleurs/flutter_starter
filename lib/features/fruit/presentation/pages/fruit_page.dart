@@ -22,7 +22,6 @@ class FruitPage extends StatelessWidget {
               } else if (state.errorMessage.isEmptyOrNull == false) {
                 return Text("Un error occured : ${state.errorMessage}");
               }
-
               return ListView.builder(
                   itemCount: state.fruits.length,
                   itemBuilder: (context, index) {

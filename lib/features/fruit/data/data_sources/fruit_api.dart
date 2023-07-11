@@ -9,7 +9,6 @@ part 'fruit_api.g.dart';
 @lazySingleton
 @RestApi(
   baseUrl: ApiConstants.fruitsClient,
-  parser: Parser.MapSerializable,
 )
 abstract class FruitApi {
   factory FruitApi(@Named(ApiConstants.publicHttpClient) Dio dio) = _FruitApi;
