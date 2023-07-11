@@ -11,30 +11,26 @@ class FruitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BlocProvider<FruitCubit>(
-          create: (context) => GetIt.instance.get<FruitCubit>()..getFruits(),
-          child: BlocBuilder<FruitCubit, FruitState>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                return const CircularProgressIndicator();
-              } else if (state.errorMessage.isEmptyOrNull == false) {
-                return Text("Un error occured : ${state.errorMessage}");
-              }
-              return ListView.builder(
-                  itemCount: state.fruits.length,
-                  itemBuilder: (context, index) {
-                    final fruit = state.fruits[index];
-                    return ListTile(
-                      title: Text(fruit.name),
-                      subtitle: Text(fruit.family),
-                      trailing: fruit.genus == FruitGenus.citrus ? const Icon(Icons.restaurant_menu) : null,
-                    );
-                  });
-            },
-          ),
-        ),
+    return BlocProvider<FruitCubit>(
+      create: (context) => GetIt.instance.get<FruitCubit>()..getFruits(),
+      child: BlocBuilder<FruitCubit, FruitState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const CircularProgressIndicator();
+          } else if (state.errorMessage.isEmptyOrNull == false) {
+            return Text("Un error occured : ${state.errorMessage}");
+          }
+          return ListView.builder(
+              itemCount: state.fruits.length,
+              itemBuilder: (context, index) {
+                final fruit = state.fruits[index];
+                return ListTile(
+                  title: Text(fruit.name),
+                  subtitle: Text(fruit.family),
+                  trailing: fruit.genus == FruitGenus.citrus ? const Icon(Icons.restaurant_menu) : null,
+                );
+              });
+        },
       ),
     );
   }
