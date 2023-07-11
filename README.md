@@ -474,13 +474,29 @@ cd ..;
 
 Let's start by test the data layer
 
-#### IV.1.a Mock
+#### IV.1.a All tests and mock
 
 ```
-cd mock; 
+Inside test/all_tests.dart;
 ```
 ```
-touch fruit_mock.dart
+// Fruit feature
+import './features/fruit/data/mapper/fruit_mapper_test.dart' as fruit_mapper_test;
+import './features/fruit/data/repository/fruit_repository_test.dart' as fruit_repository_test;
+import './features/fruit/domain/usecases/fruit_usecase_test.dart' as fruit_usecase_test;
+import './features/fruit/presentation/cubit/fruit_cubit_test.dart' as fruit_cubit_test;
+
+void main() {
+  // Fruit feature
+  fruit_mapper_test.main();
+  fruit_repository_test.main();
+  fruit_usecase_test.main();
+  fruit_cubit_test.main();
+}
+```
+
+```
+cd mock; touch fruit_data_mock.dart
 ```
 ```
 class FruitMock {
@@ -498,7 +514,7 @@ You will define :
 import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
 import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
 
-class FruitMock {
+class FruitDataMock {
   static const fruitsJson = {
     [
       {
@@ -547,10 +563,113 @@ class FruitMock {
   ];
 }
 ```
-#### IV.1.b Data & domain, test du mapper 
+#### IV.1.b Mapper
 
 ```
 cd data; cd mapper; touch fruit_mapper_test.dart;
+```
+```
+import 'package:flutter_starter/features/fruit/data/mapper/fruit_mapper.dart';
+import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../../mock/fruit_mock.dart';
+
+void main() {
+  group('[Fruit] [Mapper] :', () {
+    test('FruitModel from Json', () {
+      final modelFromJson = FruitModel.fromJson(FruitMock.fruitsJson[0]);
+      expect(modelFromJson, equals(FruitMock.fruitsModel[0]));
+    });
+    test('FruitEntity from FruitModel', () {
+      final entityFromModel = FruitMock.fruitsModel[0].toEntity();
+      expect(entityFromModel, equals(FruitMock.fruitsEntity[0]));
+    });
+
+    test('FruitsEntity (list) from FruitsModel (list)', () {
+      final entitiesFromModels = FruitMock.fruitsModel.toEntity();
+      expect(entitiesFromModels, equals(FruitMock.fruitsEntity));
+    });
+  });
+}
+```
+
+#### IV.1.c Repository
+
+```
+cd mock; touch fruit_class_mock.dart
+```
+```
+import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockFruitApi extends Mock implements FruitApi {}
+```
+
+```
+cd data; cd repository; touch fruit_repository_test.dart;
+```
+```
+import 'dart:async';
+
+import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart';
+import 'package:flutter_starter/features/fruit/data/repository/fruit_repository_impl.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../mock/fruit_class_mock.dart';
+import '../../mock/fruit_data_mock.dart';
+
+void main() {
+  late FruitApi mockFruitApi;
+  late FruitRepositoryImpl repository;
+
+  setUp(() {
+    mockFruitApi = MockFruitApi();
+    repository = FruitRepositoryImpl(mockFruitApi);
+  });
+
+  group('[Fruit] [Repository] :', () {
+    test('Calling repository.getFruits() when success', () async {
+      //GIVEN
+      when(() => mockFruitApi.getFruits()).thenAnswer(
+        (_) => Future.value(FruitDataMock.fruitsModel),
+      );
+      //WHEN
+      final result = await repository.getFruits();
+      //THEN
+      verify(
+        () => mockFruitApi.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) => null,
+        (data) {
+          expect(data, FruitDataMock.fruitsEntity);
+        },
+      );
+    });
+
+    test('Calling repository.getFruits() when error', () async {
+      final timeoutException = TimeoutException('timeout');
+      //GIVEN
+      when(() => mockFruitApi.getFruits()).thenThrow(timeoutException);
+      //WHEN
+      final result = await repository.getFruits();
+      //THEN
+      verify(
+        () => mockFruitApi.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) {
+          expect(error, timeoutException);
+        },
+        (data) => null,
+      );
+    });
+  });
+}
 ```
 
 
