@@ -10,7 +10,7 @@ class FruitCubit extends Cubit<FruitState> {
 
   FruitCubit({
     required this.getFruitUseCase,
-  }) : super(FruitState());
+  }) : super(const FruitState());
 
   Future<void> getFruits() async {
     emit(state.copyWith(

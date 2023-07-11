@@ -5,10 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock/fruit_mock.dart';
 
 void main() {
-  group('Fruit mapper tests', () {
-    test('FruitModel from FruitsJson[0]', () {
+  group('[Fruit] [Mapper] :', () {
+    test('FruitModel from Json', () {
       final modelFromJson = FruitModel.fromJson(FruitMock.fruitsJson[0]);
-
       expect(modelFromJson, equals(FruitMock.fruitsModel[0]));
     });
     test('FruitEntity from FruitModel', () {
@@ -16,7 +15,7 @@ void main() {
       expect(entityFromModel, equals(FruitMock.fruitsEntity[0]));
     });
 
-    test('FruitsEntity from FruitsModel', () {
+    test('FruitsEntity (list) from FruitsModel (list)', () {
       final entitiesFromModels = FruitMock.fruitsModel.toEntity();
       expect(entitiesFromModels, equals(FruitMock.fruitsEntity));
     });

@@ -31,6 +31,11 @@ Bonuses :
 - [Coming soon] Splash screen to initialize the app
 
 
+Open dicussion : 
+- Using Riverpod or BLoC/Getit for state management ?
+- 
+
+
 ### VSCode config
 
 Check VSCode config ```.vscode/settings.json```
