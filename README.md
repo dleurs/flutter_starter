@@ -57,12 +57,21 @@ Inside .zshrc / your terminal
 export PATH="$PATH:/Users/dleurs/fvm/versions/3.10.2/bin"
 ```
 ```
-$ flutter --version
+fvm flutter --version
 
 Flutter 3.10.2 • channel stable • https://github.com/flutter/flutter.git
 Framework • revision 9cd3d0d9ff (2 days ago) • 2023-05-23 20:57:28 -0700
 Engine • revision 90fa3ae28f
 Tools • Dart 3.0.2 • DevTools 2.23.1
+```
+
+### Package
+
+For tests
+```
+brew install lcov
+dart pub global activate remove_from_coverage
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 ```
 
 # Adding a new HTTP endpoint
@@ -853,7 +862,19 @@ void main() {
 }
 ```
 
+#### IV.1.f Setup coverage
 
+```
+brew install lcov
+dart pub global activate remove_from_coverage
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+```
+
+```
+make tests
+```
+
+![lcov-test-result](readme_images/lcov-test-result.png)
 
 
 

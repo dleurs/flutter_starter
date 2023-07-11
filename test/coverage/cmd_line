@@ -1,0 +1,1 @@
+genhtml test/coverage/lcov.info -o test/coverage
