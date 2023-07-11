@@ -672,6 +672,189 @@ void main() {
 }
 ```
 
+#### IV.1.d Usecase
+
+```
+cd mock; code fruit_class_mock.dart
+```
+Add : 
+```
+class MockFruitRepository extends Mock implements FruitRepository {}
+```
+```
+cd domain; cd usecase; touch fruit_usecase_test.dart;
+```
+```
+import 'dart:async';
+
+import 'package:dartz/dartz.dart';
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
+import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart';
+import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../mock/fruit_class_mock.dart';
+import '../../mock/fruit_data_mock.dart';
+
+void main() {
+  late GetFruitUseCase getFruitUseCase;
+  late FruitRepository mockFruitRepository;
+
+  setUp(() {
+    mockFruitRepository = MockFruitRepository();
+    getFruitUseCase = GetFruitUseCase(mockFruitRepository);
+  });
+
+  group('[Fruit] [Usecase] :', () {
+    test('Calling getFruitUseCase() when success', () async {
+      //GIVEN
+      when(() => mockFruitRepository.getFruits())
+          .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+                const Right(FruitDataMock.fruitsEntity),
+              ));
+      //WHEN
+      final result = await getFruitUseCase();
+      //THEN
+      verify(
+        () => mockFruitRepository.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) => null,
+        (data) {
+          expect(data, FruitDataMock.fruitsEntity);
+        },
+      );
+    });
+
+    test('Calling getFruitUseCase() when error', () async {
+      final timeoutException = TimeoutException('timeout');
+      //GIVEN
+      when(() => mockFruitRepository.getFruits())
+          .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+                Left(timeoutException),
+              ));
+      //WHEN
+      final result = await getFruitUseCase();
+      //THEN
+      verify(
+        () => mockFruitRepository.getFruits(),
+      ).called(1);
+
+      result.fold(
+        (error) => {expect(error, timeoutException)},
+        (data) => null,
+      );
+    });
+  });
+}
+```
+
+#### IV.1.e Cubit
+
+```
+cd mock; code fruit_class_mock.dart
+```
+Add : 
+```
+class MockFruitRepository extends Mock implements FruitRepository {}
+```
+```
+cd domain; cd usecase; touch fruit_usecase_test.dart;
+```
+```
+import 'dart:async';
+
+import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
+import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart';
+import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_cubit.dart';
+import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_state.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../mock/fruit_class_mock.dart';
+import '../../mock/fruit_data_mock.dart';
+
+void main() {
+  late GetFruitUseCase mockGetFruitUseCase;
+
+  setUp(() {
+    mockGetFruitUseCase = MockGetFruitUseCase();
+  });
+
+  FruitCubit buildCubit() {
+    return FruitCubit(getFruitUseCase: mockGetFruitUseCase);
+  }
+
+  group('[Fruit] [Cubit] :', () {
+    final timeoutException = TimeoutException('timeout');
+
+    group('constructor', () {
+      test('works properly', () {
+        //THEN
+        expect(buildCubit, returnsNormally);
+      });
+    });
+
+    blocTest<FruitCubit, FruitState>(
+      'cubit.getFruits() when success',
+      setUp: () {
+        when(() => mockGetFruitUseCase()).thenAnswer(
+            (_) async => Future<Either<Exception, List<FruitEntity>>>.value(const Right(FruitDataMock.fruitsEntity)));
+      },
+
+      //WHEN
+      build: buildCubit,
+      act: (cubit) => cubit.getFruits(),
+      //THEN
+      expect: () => [
+        const FruitState(
+          isLoading: true,
+          fruits: [],
+          errorMessage: null,
+        ),
+        const FruitState(
+          isLoading: false,
+          fruits: FruitDataMock.fruitsEntity,
+          errorMessage: null,
+        )
+      ],
+    );
+
+    blocTest<FruitCubit, FruitState>(
+      'cubit.getFruits() when failure',
+
+      setUp: () {
+        when(() => mockGetFruitUseCase())
+            .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(Left(timeoutException)));
+      },
+
+      //WHEN
+      build: buildCubit,
+      act: (cubit) => cubit.getFruits(),
+      //THEN
+      expect: () => [
+        const FruitState(
+          isLoading: true,
+          fruits: [],
+          errorMessage: null,
+        ),
+        FruitState(
+          isLoading: false,
+          fruits: [],
+          errorMessage: timeoutException.toString(),
+        )
+      ],
+    );
+  });
+}
+```
+
+
+
 
 
 
