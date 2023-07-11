@@ -4,8 +4,8 @@ import 'package:flutter_starter/features/theme_demo/presentation/widgets/compone
 import 'package:flutter_starter/features/theme_demo/presentation/widgets/elevation_widget.dart';
 import 'package:flutter_starter/features/theme_demo/presentation/widgets/typography_widget.dart';
 
-class ThemeDemoPage extends StatelessWidget {
-  const ThemeDemoPage({super.key});
+class DesignDemoPage extends StatelessWidget {
+  const DesignDemoPage({super.key});
 
   @override
   Widget build(BuildContext context) {

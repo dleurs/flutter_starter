@@ -75,7 +75,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # Design
 
-Check [Material 3 live Demo'](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/chayanforyou/flutter_material_3_demo)
+Check [Material 3 live Demo'](https://flutter.github.io/samples/web/material_3_demo/#/), [github's here](https://github.com/flutter/samples/blob/main/material_3_demo/lib)
 
 [m3_design_live](readme_images/m3_design_live.png)
 
