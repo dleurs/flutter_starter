@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/navigation/app_bottom_nav_bar.dart';
 import 'package:flutter_starter/core/presentation/app_theme.dart';
 
-import 'core/injection/injection.dart';
+import 'core/code_injection/injection.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

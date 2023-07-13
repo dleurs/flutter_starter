@@ -38,7 +38,7 @@ Open dicussion :
 ### VSCode config
 
 Check VSCode config ```.vscode/settings.json```
-
+- Default line lenght usually 80, but I found it too small. Debatable
 ```
 "dart.lineLength": 120,
 ```
