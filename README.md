@@ -16,6 +16,8 @@ A Flutter starter to quickly create a new flutter app
 7. [Coming soon] Internalisation with Firebase, dealing with online and offline
 8. [Coming soon] Dev / Staging / Prod versions
 9. [Coming soon] CICD fastlane locally and with Github Actions, upload to Google Play / Apple Store
+10. [Coming soon] OpenAPI and DTO automatically generated with back / Back for Front
+11. [Coming soon] Design system with dark mode and custom text / extensions, commun base widgets (AppText, AppGap, AppPadding)
 
 
 Bonuses : 
