@@ -10,7 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i3;
-import 'package:flutter_starter/core/injection/module/network_module.dart'
+import 'package:flutter_starter/core/code_injection/module/network_module.dart'
     as _i9;
 import 'package:flutter_starter/features/fruit/data/data_sources/fruit_api.dart'
     as _i4;

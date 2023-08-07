@@ -19,7 +19,6 @@
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": false,
-        "editor.lineHeight": 1.5,
         "editor.codeActionsOnSave": {
             "source.fixAll": true
         },
@@ -39,7 +38,6 @@
         "*.dart": "$(capture).g.dart, $(capture).freezed.dart",
     },
     "dart.showInspectorNotificationsForWidgetErrors": false,
-    "editor.fontSize": 14,
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
     "editor.inlineSuggest.enabled": true,
