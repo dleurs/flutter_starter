@@ -22,42 +22,46 @@ void main() {
   group('[Fruit] [Usecase] :', () {
     test('Calling getFruitUseCase() when success', () async {
       //GIVEN
-      when(() => mockFruitRepository.getFruits())
-          .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(
-                const Right(FruitDataMock.fruitsEntity),
-              ));
+      when(() => mockFruitRepository.getFruits()).thenAnswer(
+        (_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+          const Right<Exception, List<FruitEntity>>(FruitDataMock.fruitsEntity),
+        ),
+      );
       //WHEN
-      final result = await getFruitUseCase();
+      final Either<Exception, List<FruitEntity>> result =
+          await getFruitUseCase();
       //THEN
       verify(
         () => mockFruitRepository.getFruits(),
       ).called(1);
 
       result.fold(
-        (error) => null,
-        (data) {
+        (Exception error) => null,
+        (List<FruitEntity> data) {
           expect(data, FruitDataMock.fruitsEntity);
         },
       );
     });
 
     test('Calling getFruitUseCase() when error', () async {
-      final timeoutException = TimeoutException('timeout');
+      final TimeoutException timeoutException = TimeoutException('timeout');
       //GIVEN
-      when(() => mockFruitRepository.getFruits())
-          .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(
-                Left(timeoutException),
-              ));
+      when(() => mockFruitRepository.getFruits()).thenAnswer(
+        (_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+          Left<Exception, List<FruitEntity>>(timeoutException),
+        ),
+      );
       //WHEN
-      final result = await getFruitUseCase();
+      final Either<Exception, List<FruitEntity>> result =
+          await getFruitUseCase();
       //THEN
       verify(
         () => mockFruitRepository.getFruits(),
       ).called(1);
 
       result.fold(
-        (error) => {expect(error, timeoutException)},
-        (data) => null,
+        (Exception error) => <void>{expect(error, timeoutException)},
+        (List<FruitEntity> data) => null,
       );
     });
   });

@@ -11,5 +11,6 @@ class FruitModel with _$FruitModel {
     String? genus,
   }) = _FruitModel;
 
-  factory FruitModel.fromJson(Map<String, dynamic> json) => _$FruitModelFromJson(json);
+  factory FruitModel.fromJson(Map<String, dynamic> json) =>
+      _$FruitModelFromJson(json);
 }

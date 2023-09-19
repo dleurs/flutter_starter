@@ -1,37 +1,47 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/features/fruit/domain/usecases/get_fruit_usecase.dart';
-import 'package:flutter_starter/features/fruit/presentation/cubit/fruit_state.dart';
-import 'package:injectable/injectable.dart';
 import 'dart:developer' as developer;
+
+import 'package:dartz/dartz.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../domain/entities/fruit_entity.dart';
+import '../../domain/usecases/get_fruit_usecase.dart';
+import 'fruit_state.dart';
 
 @injectable
 class FruitCubit extends Cubit<FruitState> {
-  final GetFruitUseCase getFruitUseCase;
-
   FruitCubit({
     required this.getFruitUseCase,
   }) : super(const FruitState());
+  final GetFruitUseCase getFruitUseCase;
 
   Future<void> getFruits() async {
-    emit(state.copyWith(
-      isLoading: true,
-      fruits: [],
-      errorMessage: null,
-    ));
-    final eitherFruits = await getFruitUseCase();
+    emit(
+      state.copyWith(
+        isLoading: true,
+        fruits: <FruitEntity>[],
+        errorMessage: null,
+      ),
+    );
+    final Either<Exception, List<FruitEntity>> eitherFruits =
+        await getFruitUseCase();
     return eitherFruits.fold(
-      (error) {
-        developer.log('Un error occured : ${error.toString()}');
-        emit(state.copyWith(
-          isLoading: false,
-          errorMessage: error.toString(),
-        ));
+      (Exception error) {
+        developer.log('Un error occured : $error');
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: error.toString(),
+          ),
+        );
       },
-      (value) {
-        emit(state.copyWith(
-          isLoading: false,
-          fruits: value,
-        ));
+      (List<FruitEntity> value) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            fruits: value,
+          ),
+        );
       },
     );
   }

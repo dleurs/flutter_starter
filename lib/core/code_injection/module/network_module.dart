@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_starter/core/constants/api_constants.dart';
 import 'package:injectable/injectable.dart';
+import '../../constants/api_constants.dart';
 
 @module
 abstract class NetWorkModule {

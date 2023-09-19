@@ -15,9 +15,11 @@ class ColorPalettesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color selectedColor = Theme.of(context).primaryColor;
-    ThemeData lightTheme = ThemeData(colorSchemeSeed: selectedColor, brightness: Brightness.light);
-    ThemeData darkTheme = ThemeData(colorSchemeSeed: selectedColor, brightness: Brightness.dark);
+    final Color selectedColor = Theme.of(context).primaryColor;
+    final ThemeData lightTheme =
+        ThemeData(colorSchemeSeed: selectedColor, brightness: Brightness.light);
+    final ThemeData darkTheme =
+        ThemeData(colorSchemeSeed: selectedColor, brightness: Brightness.dark);
 
     Widget schemeLabel(String brightness) {
       return Padding(
@@ -33,11 +35,12 @@ class ColorPalettesWidget extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(
             style: Theme.of(context).textTheme.bodySmall,
-            children: const [
+            children: const <InlineSpan>[
               TextSpan(
-                  text: 'To create color schemes based on a '
-                      'platform\'s implementation of dynamic color, '
-                      'use the '),
+                text: 'To create color schemes based on a '
+                    "platform's implementation of dynamic color, "
+                    'use the ',
+              ),
               TextSpan(
                 text: 'dynamic_color',
                 style: TextStyle(decoration: TextDecoration.underline),
@@ -57,22 +60,28 @@ class ColorPalettesWidget extends StatelessWidget {
     }
 
     return Column(
-      children: [
+      children: <Widget>[
         dynamicColorNotice(),
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: Row(
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Column(
-                  children: [schemeLabel("Light Theme"), schemeView(lightTheme)],
+                  children: <Widget>[
+                    schemeLabel('Light Theme'),
+                    schemeView(lightTheme),
+                  ],
                 ),
               ),
               Expanded(
                 child: Column(
-                  children: [schemeLabel("Dark Theme"), schemeView(darkTheme)],
+                  children: <Widget>[
+                    schemeLabel('Dark Theme'),
+                    schemeView(darkTheme)
+                  ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -89,101 +98,166 @@ class ColorSchemeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        ColorGroup(children: [
-          ColorChip(
-            label: "primary",
-            color: colorScheme.primary,
-            onColor: colorScheme.onPrimary,
-          ),
-          ColorChip(label: "onPrimary", color: colorScheme.onPrimary, onColor: colorScheme.primary),
-          ColorChip(
-            label: "primaryContainer",
-            color: colorScheme.primaryContainer,
-            onColor: colorScheme.onPrimaryContainer,
-          ),
-          ColorChip(
-            label: "onPrimaryContainer",
-            color: colorScheme.onPrimaryContainer,
-            onColor: colorScheme.primaryContainer,
-          )
-        ]),
+      children: <Widget>[
+        ColorGroup(
+          children: <Widget>[
+            ColorChip(
+              label: 'primary',
+              color: colorScheme.primary,
+              onColor: colorScheme.onPrimary,
+            ),
+            ColorChip(
+              label: 'onPrimary',
+              color: colorScheme.onPrimary,
+              onColor: colorScheme.primary,
+            ),
+            ColorChip(
+              label: 'primaryContainer',
+              color: colorScheme.primaryContainer,
+              onColor: colorScheme.onPrimaryContainer,
+            ),
+            ColorChip(
+              label: 'onPrimaryContainer',
+              color: colorScheme.onPrimaryContainer,
+              onColor: colorScheme.primaryContainer,
+            ),
+          ],
+        ),
         divider,
-        ColorGroup(children: [
-          ColorChip(
-            label: "secondary",
-            color: colorScheme.secondary,
-            onColor: colorScheme.onSecondary,
-          ),
-          ColorChip(
-            label: "onSecondary",
-            color: colorScheme.onSecondary,
-            onColor: colorScheme.secondary,
-          ),
-          ColorChip(
-            label: "secondaryContainer",
-            color: colorScheme.secondaryContainer,
-            onColor: colorScheme.onSecondaryContainer,
-          ),
-          ColorChip(
-              label: "onSecondaryContainer",
+        ColorGroup(
+          children: <Widget>[
+            ColorChip(
+              label: 'secondary',
+              color: colorScheme.secondary,
+              onColor: colorScheme.onSecondary,
+            ),
+            ColorChip(
+              label: 'onSecondary',
+              color: colorScheme.onSecondary,
+              onColor: colorScheme.secondary,
+            ),
+            ColorChip(
+              label: 'secondaryContainer',
+              color: colorScheme.secondaryContainer,
+              onColor: colorScheme.onSecondaryContainer,
+            ),
+            ColorChip(
+              label: 'onSecondaryContainer',
               color: colorScheme.onSecondaryContainer,
-              onColor: colorScheme.secondaryContainer)
-        ]),
-        divider,
-        ColorGroup(
-          children: [
-            ColorChip(label: 'tertiary', color: colorScheme.tertiary, onColor: colorScheme.onTertiary),
-            ColorChip(label: 'onTertiary', color: colorScheme.onTertiary, onColor: colorScheme.tertiary),
-            ColorChip(
-                label: 'tertiaryContainer',
-                color: colorScheme.tertiaryContainer,
-                onColor: colorScheme.onTertiaryContainer),
-            ColorChip(
-                label: 'onTertiaryContainer',
-                color: colorScheme.onTertiaryContainer,
-                onColor: colorScheme.tertiaryContainer),
+              onColor: colorScheme.secondaryContainer,
+            ),
           ],
         ),
         divider,
         ColorGroup(
-          children: [
-            ColorChip(label: 'error', color: colorScheme.error, onColor: colorScheme.onError),
-            ColorChip(label: 'onError', color: colorScheme.onError, onColor: colorScheme.error),
+          children: <Widget>[
             ColorChip(
-                label: 'errorContainer', color: colorScheme.errorContainer, onColor: colorScheme.onErrorContainer),
+              label: 'tertiary',
+              color: colorScheme.tertiary,
+              onColor: colorScheme.onTertiary,
+            ),
             ColorChip(
-                label: 'onErrorContainer', color: colorScheme.onErrorContainer, onColor: colorScheme.errorContainer),
+              label: 'onTertiary',
+              color: colorScheme.onTertiary,
+              onColor: colorScheme.tertiary,
+            ),
+            ColorChip(
+              label: 'tertiaryContainer',
+              color: colorScheme.tertiaryContainer,
+              onColor: colorScheme.onTertiaryContainer,
+            ),
+            ColorChip(
+              label: 'onTertiaryContainer',
+              color: colorScheme.onTertiaryContainer,
+              onColor: colorScheme.tertiaryContainer,
+            ),
           ],
         ),
         divider,
         ColorGroup(
-          children: [
-            ColorChip(label: 'background', color: colorScheme.background, onColor: colorScheme.onBackground),
-            ColorChip(label: 'onBackground', color: colorScheme.onBackground, onColor: colorScheme.background),
+          children: <Widget>[
+            ColorChip(
+              label: 'error',
+              color: colorScheme.error,
+              onColor: colorScheme.onError,
+            ),
+            ColorChip(
+              label: 'onError',
+              color: colorScheme.onError,
+              onColor: colorScheme.error,
+            ),
+            ColorChip(
+              label: 'errorContainer',
+              color: colorScheme.errorContainer,
+              onColor: colorScheme.onErrorContainer,
+            ),
+            ColorChip(
+              label: 'onErrorContainer',
+              color: colorScheme.onErrorContainer,
+              onColor: colorScheme.errorContainer,
+            ),
           ],
         ),
         divider,
         ColorGroup(
-          children: [
-            ColorChip(label: 'surface', color: colorScheme.surface, onColor: colorScheme.onSurface),
-            ColorChip(label: 'onSurface', color: colorScheme.onSurface, onColor: colorScheme.surface),
+          children: <Widget>[
             ColorChip(
-                label: 'surfaceVariant', color: colorScheme.surfaceVariant, onColor: colorScheme.onSurfaceVariant),
+              label: 'background',
+              color: colorScheme.background,
+              onColor: colorScheme.onBackground,
+            ),
             ColorChip(
-                label: 'onSurfaceVariant', color: colorScheme.onSurfaceVariant, onColor: colorScheme.surfaceVariant),
+              label: 'onBackground',
+              color: colorScheme.onBackground,
+              onColor: colorScheme.background,
+            ),
           ],
         ),
         divider,
         ColorGroup(
-          children: [
+          children: <Widget>[
+            ColorChip(
+              label: 'surface',
+              color: colorScheme.surface,
+              onColor: colorScheme.onSurface,
+            ),
+            ColorChip(
+              label: 'onSurface',
+              color: colorScheme.onSurface,
+              onColor: colorScheme.surface,
+            ),
+            ColorChip(
+              label: 'surfaceVariant',
+              color: colorScheme.surfaceVariant,
+              onColor: colorScheme.onSurfaceVariant,
+            ),
+            ColorChip(
+              label: 'onSurfaceVariant',
+              color: colorScheme.onSurfaceVariant,
+              onColor: colorScheme.surfaceVariant,
+            ),
+          ],
+        ),
+        divider,
+        ColorGroup(
+          children: <Widget>[
             ColorChip(label: 'outline', color: colorScheme.outline),
             ColorChip(label: 'shadow', color: colorScheme.shadow),
             ColorChip(
-                label: 'inverseSurface', color: colorScheme.inverseSurface, onColor: colorScheme.onInverseSurface),
+              label: 'inverseSurface',
+              color: colorScheme.inverseSurface,
+              onColor: colorScheme.onInverseSurface,
+            ),
             ColorChip(
-                label: 'onInverseSurface', color: colorScheme.onInverseSurface, onColor: colorScheme.inverseSurface),
-            ColorChip(label: 'inversePrimary', color: colorScheme.inversePrimary, onColor: colorScheme.primary),
+              label: 'onInverseSurface',
+              color: colorScheme.onInverseSurface,
+              onColor: colorScheme.inverseSurface,
+            ),
+            ColorChip(
+              label: 'inversePrimary',
+              color: colorScheme.inversePrimary,
+              onColor: colorScheme.primary,
+            ),
           ],
         ),
       ],
@@ -220,7 +294,7 @@ class ColorChip extends StatelessWidget {
   final String label;
 
   static Color contrastColor(Color color) {
-    final brightness = ThemeData.estimateBrightnessForColor(color);
+    final Brightness brightness = ThemeData.estimateBrightnessForColor(color);
     switch (brightness) {
       case Brightness.dark:
         return Colors.white;
@@ -233,12 +307,12 @@ class ColorChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color labelColor = onColor ?? contrastColor(color);
 
-    return Container(
+    return ColoredBox(
       color: color,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          children: [
+          children: <Widget>[
             Expanded(child: Text(label, style: TextStyle(color: labelColor))),
           ],
         ),

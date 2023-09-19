@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/navigation/app_bottom_nav_bar.dart';
-import 'package:flutter_starter/core/presentation/app_theme.dart';
 
 import 'core/code_injection/injection.dart';
+import 'core/navigation/app_bottom_nav_bar.dart';
+import 'core/presentation/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_starter/core/constants/api_constants.dart';
-import 'package:flutter_starter/features/fruit/data/models/fruit_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+import '../../../../core/constants/api_constants.dart';
+import '../models/fruit_model.dart';
 
 part 'fruit_api.g.dart';
 
@@ -18,6 +18,6 @@ abstract class FruitApi {
     return FruitApi(dio);
   }
 
-  @GET("${ApiConstants.apiFruitPath}/all")
+  @GET('${ApiConstants.apiFruitPath}/all')
   Future<List<FruitModel>> getFruits();
 }
