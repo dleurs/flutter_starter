@@ -1,16 +1,18 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_starter/core/services/usecase.dart';
-import 'package:flutter_starter/features/fruit/domain/entities/fruit_entity.dart';
-import 'package:flutter_starter/features/fruit/domain/repository_abstract/fruit_repository.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/services/usecase.dart';
+import '../entities/fruit_entity.dart';
+import '../repository_abstract/fruit_repository.dart';
+
 @injectable
-class GetFruitUseCase extends BaseFutureWithEmptyParamsUseCase<Exception, List<FruitEntity>> {
-  final FruitRepository _fruitRepository;
+class GetFruitUseCase
+    extends BaseFutureWithEmptyParamsUseCase<Exception, List<FruitEntity>> {
   GetFruitUseCase(this._fruitRepository);
+  final FruitRepository _fruitRepository;
 
   @override
   Future<Either<Exception, List<FruitEntity>>> call() async {
-    return await _fruitRepository.getFruits();
+    return _fruitRepository.getFruits();
   }
 }

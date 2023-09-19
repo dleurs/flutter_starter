@@ -24,7 +24,7 @@ void main() {
   }
 
   group('[Fruit] [Cubit] :', () {
-    final timeoutException = TimeoutException('timeout');
+    final TimeoutException timeoutException = TimeoutException('timeout');
 
     group('constructor', () {
       test('works properly', () {
@@ -37,24 +37,24 @@ void main() {
       'cubit.getFruits() when success',
       setUp: () {
         when(() => mockGetFruitUseCase()).thenAnswer(
-            (_) async => Future<Either<Exception, List<FruitEntity>>>.value(const Right(FruitDataMock.fruitsEntity)));
+          (_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+            const Right<Exception, List<FruitEntity>>(
+                FruitDataMock.fruitsEntity),
+          ),
+        );
       },
 
       //WHEN
       build: buildCubit,
-      act: (cubit) => cubit.getFruits(),
+      act: (FruitCubit cubit) => cubit.getFruits(),
       //THEN
-      expect: () => [
+      expect: () => <FruitState>[
         const FruitState(
           isLoading: true,
-          fruits: [],
-          errorMessage: null,
         ),
         const FruitState(
-          isLoading: false,
           fruits: FruitDataMock.fruitsEntity,
-          errorMessage: null,
-        )
+        ),
       ],
     );
 
@@ -62,25 +62,25 @@ void main() {
       'cubit.getFruits() when failure',
 
       setUp: () {
-        when(() => mockGetFruitUseCase())
-            .thenAnswer((_) async => Future<Either<Exception, List<FruitEntity>>>.value(Left(timeoutException)));
+        when(() => mockGetFruitUseCase()).thenAnswer(
+          (_) async => Future<Either<Exception, List<FruitEntity>>>.value(
+            Left<Exception, List<FruitEntity>>(timeoutException),
+          ),
+        );
       },
 
       //WHEN
       build: buildCubit,
-      act: (cubit) => cubit.getFruits(),
+      act: (FruitCubit cubit) => cubit.getFruits(),
       //THEN
-      expect: () => [
+      expect: () => <FruitState>[
         const FruitState(
           isLoading: true,
-          fruits: [],
-          errorMessage: null,
         ),
         FruitState(
-          isLoading: false,
-          fruits: [],
+          fruits: <FruitEntity>[],
           errorMessage: timeoutException.toString(),
-        )
+        ),
       ],
     );
   });

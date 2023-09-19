@@ -3,8 +3,14 @@
     "configurations": [
         {
             "program": "lib/main.dart",
-            //"args": ["--flavor", "dev", "--dart-define=envfile=.env.dev"],
-            "name": "flutter starter debug",
+            "name": "Debug",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "program": "lib/main.dart",
+            "args": ["--release"],
+            "name": "Release",
             "request": "launch",
             "type": "dart"
         },

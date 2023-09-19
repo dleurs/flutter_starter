@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:dart_extensions/dart_extensions.dart';
-import 'package:flutter_starter/core/constants/app_constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/constants/app_constants.dart';
 
 part 'fruit_entity.freezed.dart';
 
@@ -25,8 +26,10 @@ enum FruitGenus {
   const FruitGenus({required this.name});
 
   @override
-  String toString() => "FruitGenus($name)";
+  String toString() => 'FruitGenus($name)';
 
-  static getFruitGenus(String? name) =>
-      FruitGenus.values.firstOrNullWhere((element) => element.name == name) ?? FruitGenus.unknown;
+  static FruitGenus getFruitGenus(String? name) =>
+      FruitGenus.values
+          .firstOrNullWhere((FruitGenus element) => element.name == name) ??
+      FruitGenus.unknown;
 }

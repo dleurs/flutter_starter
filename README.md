@@ -36,20 +36,20 @@ Open dicussion :
 - [ State management ] Using Riverpod or BLoC/Getit ?
 - [ Navigation ] Using Beamer or GoRouter ?
 
+## VSCode packages
+### Dart linter DCM
 
-### VSCode config
+```
+brew tap CQLabs/dcm
+brew install dcm
+```
 
-Check VSCode config ```.vscode/settings.json```
-- Default line lenght usually 80, but I found it too small. Debatable
-```
-"dart.lineLength": 120,
-```
 ### Flutter version management 
 
 https://fvm.app/docs/getting_started/installation
 
 ```
-fvm use 3.10.5
+fvm use 3.13.4
 ```
 Check lastest version inside ```.fvm/fvm_config.json```
 

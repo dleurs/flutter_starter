@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/features/design_demo/presentation/widgets/color_palettes_widget.dart';
-import 'package:flutter_starter/features/design_demo/presentation/widgets/components_widget.dart';
-import 'package:flutter_starter/features/design_demo/presentation/widgets/elevation_widget.dart';
-import 'package:flutter_starter/features/design_demo/presentation/widgets/typography_widget.dart';
+import '../widgets/color_palettes_widget.dart';
+import '../widgets/components_widget.dart';
+import '../widgets/elevation_widget.dart';
+import '../widgets/typography_widget.dart';
 
 class DesignDemoPage extends StatelessWidget {
   const DesignDemoPage({super.key});
@@ -12,7 +12,7 @@ class DesignDemoPage extends StatelessWidget {
     return const SingleChildScrollView(
       child: SafeArea(
         child: Column(
-          children: [
+          children: <Widget>[
             Subtitle(text: 'Typography'),
             TypographyWidget(),
             Subtitle(text: 'Color Palettes'),
@@ -29,13 +29,13 @@ class DesignDemoPage extends StatelessWidget {
 }
 
 class Subtitle extends StatelessWidget {
-  final String text;
   const Subtitle({super.key, required this.text});
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         const Divider(thickness: 4),
         Padding(
           padding: const EdgeInsets.all(16.0),

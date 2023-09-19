@@ -8,14 +8,14 @@ class ElevationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color shadowColor = Theme.of(context).colorScheme.shadow;
-    Color surfaceTint = Theme.of(context).colorScheme.primary;
+    final Color shadowColor = Theme.of(context).colorScheme.shadow;
+    final Color surfaceTint = Theme.of(context).colorScheme.primary;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 20, 16.0, 0),
             child: Text(
@@ -44,7 +44,7 @@ class ElevationWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-          ElevationGrid(shadowColor: shadowColor)
+          ElevationGrid(shadowColor: shadowColor),
         ],
       ),
     );
@@ -59,10 +59,13 @@ class ElevationGrid extends StatelessWidget {
   final Color? shadowColor;
   final Color? surfaceTintColor;
 
-  List<ElevationCard> elevationCards(Color? shadowColor, Color? surfaceTintColor) {
+  List<ElevationCard> elevationCards(
+    Color? shadowColor,
+    Color? surfaceTintColor,
+  ) {
     return elevations
         .map(
-          (elevationInfo) => ElevationCard(
+          (ElevationInfo elevationInfo) => ElevationCard(
             info: elevationInfo,
             shadowColor: shadowColor,
             surfaceTint: surfaceTintColor,
@@ -75,29 +78,36 @@ class ElevationGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth < narrowScreenWidthThreshold) {
-          return GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            physics: const NeverScrollableScrollPhysics(),
-            children: elevationCards(shadowColor, surfaceTintColor),
-          );
-        } else {
-          return GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 6,
-            physics: const NeverScrollableScrollPhysics(),
-            children: elevationCards(shadowColor, surfaceTintColor),
-          );
-        }
-      }),
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          if (constraints.maxWidth < narrowScreenWidthThreshold) {
+            return GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 3,
+              physics: const NeverScrollableScrollPhysics(),
+              children: elevationCards(shadowColor, surfaceTintColor),
+            );
+          } else {
+            return GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 6,
+              physics: const NeverScrollableScrollPhysics(),
+              children: elevationCards(shadowColor, surfaceTintColor),
+            );
+          }
+        },
+      ),
     );
   }
 }
 
 class ElevationCard extends StatefulWidget {
-  const ElevationCard({super.key, required this.info, this.shadowColor, this.surfaceTint});
+  const ElevationCard({
+    super.key,
+    required this.info,
+    this.shadowColor,
+    this.surfaceTint,
+  });
 
   final ElevationInfo info;
   final Color? shadowColor;
@@ -141,7 +151,7 @@ class _ElevationCardState extends State<ElevationCard> {
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               Text(
-                '${widget.info.level.toInt()} dp',
+                '${widget.info.level} dp',
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               if (showOpacity)
