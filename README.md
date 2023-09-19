@@ -1,6 +1,6 @@
 # Flutter Starter
 
-A Flutter starter to quickly create a new flutter app
+A Flutter starter to quickly create a new flutter
 
 ![app_demo](readme_images/app_demo.gif)
 
@@ -37,16 +37,17 @@ Open dicussion :
 - [ Navigation ] Using Beamer or GoRouter ?
 
 ## VSCode packages
-### Dart linter DCM
 
-```
-brew tap CQLabs/dcm
-brew install dcm
-```
+- Flutter
+- Dart
+- Bloc
+- Better Comments
+- Gitlens
+- Material Icon Theme
+- Error Lens
+- Image preview
 
-### Flutter version management 
-
-https://fvm.app/docs/getting_started/installation
+### ![Flutter version management](https://fvm.app/docs/getting_started/installation) 
 
 ```
 fvm use 3.13.4
@@ -93,7 +94,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 - Check [Flutter Icons](https://api.flutter.dev/flutter/material/Icons-class.html)
 # Adding a new HTTP endpoint
 
-Example implementing fruityvice Free Api https://fruityvice.com/api/fruit/all
+Example implementing [fruityvice Free Api](https://fruityvice.com/api/fruit/all)
 
 Create folders ```fruit``` under ```lib/features```
 
@@ -209,7 +210,7 @@ Here the usecase and the repo does not have parameters, if so, use ```BaseFuture
 ## II. Data
 ### II.1. Models
 
-First, check the data source on a browser ```https://fruityvice.com/api/fruit/all```
+First, [check the data source on a browser](https://fruityvice.com/api/fruit/all)
 
 ![browser-json](readme_images/browser-json.png)
 
@@ -381,9 +382,7 @@ It is not clean to access state with ```GetIt.instance.get<FruitCubit>().state``
 
 - https://stackoverflow.com/questions/73707762/flutter-access-bloc-without-context
 - https://codeclusive.io/blog/flutter-authorization-with-bloc/
-
-
-https://stackoverflow.com/questions/73707762/flutter-access-bloc-without-context
+- https://stackoverflow.com/questions/73707762/flutter-access-bloc-without-context
 
 Inside ```lib/features/fruit/presentation/cubit/fruit_state.dart```
 
@@ -529,7 +528,7 @@ class FruitMock {
   
 }
 ```
-Then check brut data on ```https://fruityvice.com/api/fruit/all``` and pick relevant data to mock
+Then [check brut data](https://fruityvice.com/api/fruit/all) and pick relevant data to mock
 
 You will define : 
 - FruitsJson
