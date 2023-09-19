@@ -118,7 +118,7 @@ linter:
     - library_names
     - library_prefixes
     - library_private_types_in_public_api
-    # - lines_longer_than_80_chars # not required by flutter style
+    - lines_longer_than_80_chars
     - literal_only_boolean_expressions
     # - matching_super_parameters # blocked on https://github.com/dart-lang/language/issues/2509
     - missing_whitespace_between_adjacent_strings
@@ -186,7 +186,7 @@ linter:
     - provide_deprecation_message
     # - public_member_api_docs # enabled on a case-by-case basis; see e.g. packages/analysis_options.yaml
     - recursive_getters
-    # - require_trailing_commas # would be nice, but requires a lot of manual work: 10,000+ code locations would need to be reformatted by hand after bulk fix is applied
+    - require_trailing_commas
     - secure_pubspec_urls
     - sized_box_for_whitespace
     - sized_box_shrink_expand
