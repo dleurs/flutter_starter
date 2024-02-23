@@ -1,6 +1,13 @@
 # Flutter Starter
 
-A Flutter starter to quickly create a new flutter
+Very good flutter starter / template / boilerplates :
+
+⁠1. https://github.com/VeryGoodOpenSource/very_good_templates/tree/main/very_good_core
+    a. https://cli.vgv.dev/
+2. https://github.com/zeref278/flutter_boilerplate?tab=readme-ov-file
+3. https://github.com/ntminhdn/Flutter-Bloc-CleanArchitecture
+
+Here in this project with my current knowledge
 
 ![app_demo](readme_images/app_demo.gif)
 
