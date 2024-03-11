@@ -426,6 +426,8 @@ UI should be very stupid, there is no intelligence inside it, just if (that stat
 
 If you should add a little more intelligence, like modify a date presentation from "2023-06-01" to "Jeudi 1 juin 2023", then you should create a static function inside ```lib/features/fruit/domain/utils/fruit_utils.dart``` (Maybe inside presentation folder ?)
 
+**EDIT [2024/03/11] I recommand using BlocSelector and not BlocBuilder**
+
 ```
 import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
