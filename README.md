@@ -54,8 +54,7 @@ Other cool stuff :
 - [Dev only] HTTP request observer (https://pub.dev/packages/alice)
 - [Dev only] Design pattern observer
 - [Dev and prod] In app review and to right moment to ask review (https://pub.dev/packages/in_app_review)
-- [Dev and/or prod] Better UI Feedback provider linked to github / gitlab (https://pub.dev/packages/feedback)
-  - Chat to create a channel of discussion to solve an issue
+- [Dev and/or prod] Better UI Feedback provider linked to github / gitlab (https://pub.dev/packages/feedback) with automatically mail sended with content of the message in order to respond
 
 ## VSCode packages
 
