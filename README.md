@@ -40,10 +40,22 @@ Bonuses :
 - [Coming soon] Handling fvm, flutter version management
 - [Coming soon] Splash screen to initialize the app (remote config)
 
+## Open discussion on some packages / strategies
 
-Open dicussion : 
-- [ State management ] Using Riverpod or BLoC/Getit ?
-- [ Navigation ] Using Beamer or GoRouter ?
+Things to consider implementing from beginning : 
+- [Dev and prod] Version management control (show or force app update), linked with Firebase remote config or flutter_upgrade_version
+  - Feature flags can also be added, that can me modified remotly with Firebase remote config
+- [Dev and prod] When to have notification consent ? After registration ? Login ? Launching the app ?
+- [Dev and prod] Cookie consent at the start or splash
+- [Dev and prod] Privacy policy and general conditions of use
+- [Dev and prod] Show version of the app (https://pub.dev/packages/package_info_plus)
+
+Other cool stuff : 
+- [Dev only] HTTP request observer (https://pub.dev/packages/alice)
+- [Dev only] Design pattern observer
+- [Dev and prod] In app review and to right moment to ask review (https://pub.dev/packages/in_app_review)
+- [Dev and/or prod] Better UI Feedback provider linked to github / gitlab (https://pub.dev/packages/feedback)
+  - Chat to create a channel of discussion to solve an issue
 
 ## VSCode packages
 
