@@ -45,16 +45,19 @@ Bonuses :
 Things to consider implementing from beginning : 
 - [Dev and prod] Version management control (show or force app update), linked with Firebase remote config or flutter_upgrade_version
   - Feature flags can also be added, that can me modified remotly with Firebase remote config
-- [Dev and prod] When to have notification consent ? After registration ? Login ? Launching the app ?
-- [Dev and prod] Cookie consent at the start or splash
-- [Dev and prod] Privacy policy and general conditions of use
-- [Dev and prod] Show version of the app (https://pub.dev/packages/package_info_plus)
+- [Dev and prod] Pop up / modal when a new version has been installed to explained what new
 
 Other cool stuff : 
 - [Dev only] HTTP request observer (https://pub.dev/packages/alice)
 - [Dev only] Design pattern observer
 - [Dev and prod] In app review and to right moment to ask review (https://pub.dev/packages/in_app_review)
 - [Dev and/or prod] Better UI Feedback provider linked to github / gitlab (https://pub.dev/packages/feedback) with automatically mail sended with content of the message in order to respond
+- [Dev and prod] Show version of the app (https://pub.dev/packages/package_info_plus)
+
+Other stuff : 
+- [Dev and prod] When to have notification consent ? After registration ? Login ? Launching the app ?
+- [Dev and prod] Cookie consent at the start or splash
+- [Dev and prod] Privacy policy and general conditions of use
 
 ## VSCode packages
 
