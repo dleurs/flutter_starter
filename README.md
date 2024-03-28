@@ -425,6 +425,8 @@ class FruitState with _$FruitState {
 }
 ```
 
+**To investigate : we can add an Enum with the FruitStateEnum {loading, error, success} to then use pattern matching inside UI**
+
 Be careful of default value in constructor,```this.isLoading = false,``` 
 
 ```
