@@ -13,6 +13,8 @@ Here in this project with my current knowledge
 
 ![app_demo](readme_images/app_demo.gif)
 
+![clean_archi_bloc_flutter](readme_images/clean_archi_bloc_flutter.jpg)
+
 ## What is inside this project ?
 
 1. State management using Cubit
@@ -235,7 +237,7 @@ Here the usecase and the repo does not have parameters, if so, use ```BaseFuture
 
 First, [check the data source on a browser](https://fruityvice.com/api/fruit/all)
 
-![browser-json](readme_images/browser-json.png)
+![browser_json](readme_images/browser_json.png)
 
 ```
 ```
@@ -917,7 +919,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 make tests
 ```
 
-![lcov-test-result](readme_images/lcov-test-result.png)
+![lcov_test_result](readme_images/lcov_test_result.png)
 
 
 
