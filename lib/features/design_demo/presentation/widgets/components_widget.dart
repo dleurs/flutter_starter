@@ -521,7 +521,7 @@ class Cards extends StatelessWidget {
           SizedBox(
             width: cardWidth,
             child: Card(
-              color: Theme.of(context).colorScheme.surfaceVariant,
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
               elevation: 0,
               child: Container(
                 padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
@@ -873,9 +873,9 @@ class _SwitchRowState extends State<SwitchRow> {
   bool value0 = false;
   bool value1 = true;
 
-  final MaterialStateProperty<Icon?> thumbIcon =
-      MaterialStateProperty.resolveWith<Icon?>((Set<MaterialState> states) {
-    if (states.contains(MaterialState.selected)) {
+  final WidgetStateProperty<Icon?> thumbIcon =
+      WidgetStateProperty.resolveWith<Icon?>((Set<WidgetState> states) {
+    if (states.contains(WidgetState.selected)) {
       return const Icon(Icons.check);
     }
     return const Icon(Icons.close);
@@ -1672,7 +1672,7 @@ class BottomSheetSection extends StatefulWidget {
 
 class _BottomSheetSectionState extends State<BottomSheetSection> {
   bool isNonModalBottomSheetOpen = false;
-  PersistentBottomSheetController<void>? _nonModalBottomSheetController;
+  PersistentBottomSheetController? _nonModalBottomSheetController;
 
   @override
   Widget build(BuildContext context) {
@@ -1759,7 +1759,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                 });
               }
 
-              _nonModalBottomSheetController = showBottomSheet<void>(
+              _nonModalBottomSheetController = showBottomSheet(
                 elevation: 8.0,
                 context: context,
                 // TODO(dleurs): Remove when this is in the framework https://github.com/flutter/flutter/issues/118619
@@ -2590,7 +2590,10 @@ class ComponentGroupDecoration extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
-        color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+        color: Theme.of(context)
+            .colorScheme
+            .surfaceContainerHighest
+            .withOpacity(0.3),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Center(

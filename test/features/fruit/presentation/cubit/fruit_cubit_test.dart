@@ -39,7 +39,8 @@ void main() {
         when(() => mockGetFruitUseCase()).thenAnswer(
           (_) async => Future<Either<Exception, List<FruitEntity>>>.value(
             const Right<Exception, List<FruitEntity>>(
-                FruitDataMock.fruitsEntity),
+              FruitDataMock.fruitsEntity,
+            ),
           ),
         );
       },
