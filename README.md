@@ -923,5 +923,37 @@ make tests
 
 
 
+#### V. Investigation / improvements
+
+1. 
+
+```
+import "package:freezed_annotation/freezed_annotation.dart";
+
+part "bloc_state.freezed.dart";
+part "bloc_state.g.dart";
+
+@freezed
+sealed class BlocState with _$BlocState {
+  const factory BlocState.initial() = Initial;
+
+  const factory BlocState.loading() = Loading;
+
+  const factory BlocState.success() = Success;
+
+  const factory BlocState.error({String? errorMessage}) = Error;
+
+  factory BlocState.fromJson(Map<String, Object?> json) => _$BlocStateFromJson(json);
+}
+```
+
+2. Use of ```part of 'chromecast_cubit.dart';``` inside the state and
+```
+import 'package:freezed_annotation/freezed_annotation.dart';
+part "chromecast_state.dart";
+part "chromecast_cubit.freezed.dart";
+```
+Inside the cubit
+
 
 
